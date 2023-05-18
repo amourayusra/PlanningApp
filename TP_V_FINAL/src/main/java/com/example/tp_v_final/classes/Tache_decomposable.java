@@ -1,18 +1,19 @@
-package com.example.tp_v_final;
+package com.example.tp_v_final.classes;
 
-import java.util.List;
+import java.time.LocalDate;
+
 public class Tache_decomposable extends Tache {
 
     private Tache[] sous_taches;
 
-    public Tache_decomposable(String nom, int priorite, int duree, int deadline, Categorie categorie, Tache[] sous_taches) {
+    public Tache_decomposable(String nom, int priorite, int duree, LocalDate deadline, Categorie categorie, Tache[] sous_taches) {
         super(nom, priorite, duree, deadline, categorie);
         this.sous_taches = sous_taches;
     }
 
     @Override
     public void planifier_auto(Jour jour) {
-        int tempsRestant = this.duree;
+       /* int tempsRestant = this.duree;
         int i=1;
         List<Créneaux> creneauxLibres =   jour.ChercheCreneauLibre();
         for (Créneaux creneau : creneauxLibres) {
@@ -30,8 +31,13 @@ public class Tache_decomposable extends Tache {
                     }
                 }
             }
-        }
+        }*/
     }
+   @Override
+   public void planifier_manuel(Créneaux creneau){
+
+   }
+
     /**************************seteur and geteur************************************************/
     public Tache[] getSous_taches() {
         return sous_taches;

@@ -1,12 +1,13 @@
-package com.example.tp_v_final;
+package com.example.tp_v_final.classes;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Tache_simple extends Tache {
     private boolean estPeriodique;
     private int periode;
 
-    public Tache_simple(String nom, Priorite priorite, int duree, int deadline, Categorie categorie) {
+    public Tache_simple(String nom, int priorite, int duree, LocalDate deadline, Categorie categorie) {
         super(nom, priorite, duree, deadline, categorie);
         estPeriodique = false;
     }

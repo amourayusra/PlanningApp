@@ -1,6 +1,7 @@
-package com.example.tp_v_final;
+package com.example.tp_v_final.classes;
+import com.example.tp_v_final.classes.Jour;
+
 import java.time.LocalDate;
-import java.util.PriorityQueue;
 
 public class Calendrier {
 
@@ -15,7 +16,7 @@ public class Calendrier {
     }
 
     public void replanifier () {
-        PriorityQueue<Tache> fileAttente = new PriorityQueue<>();
+       /* PriorityQueue<Tache> fileAttente = new PriorityQueue<>();
         for ( Jour jour : jours ) {
             for ( Créneaux creneau : Jour.getCreneaux()) {
                 fileAttente.add((creneau.getTacheAffectee().getPriorite()));
@@ -23,6 +24,6 @@ public class Calendrier {
         }
         while (!fileAttente.isEmpty()) {
             Tache tache = fileAttente.poll();
-            tache.planifier_auto();
+            tache.planifier_auto();*/
         }
     }

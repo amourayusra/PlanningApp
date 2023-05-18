@@ -1,4 +1,4 @@
-package com.example.tp_v_final;
+package com.example.tp_v_final.classes;
 
 import java.time.LocalDate;
 public abstract class Tache {
@@ -41,7 +41,7 @@ public abstract class Tache {
     }
     public abstract void planifier_auto(Jour jour);
     public abstract void planifier_manuel(Créneaux creneau);
-    public Tache getPriorite() { return priorite ;}
+    public int getPriorite() { return priorite ;}
     /*
     public void modifier(){}
     public void evaluer()
