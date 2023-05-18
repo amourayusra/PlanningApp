@@ -57,6 +57,7 @@ public class Account_user implements Serializable{
 
             for (Account_user account : userList) {
                 if (account.getUser_name().equals(user_name)) {
+                    setUser(account.getUser());
                     isFound = true;
                     break;
                 }
