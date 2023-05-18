@@ -1,7 +1,7 @@
 package com.example.tp_v_final.classes;
+import java.io.Serializable;
 
-
-public class User {
+public class User implements Serializable{
     private Calendrier calendrier;
     private Historique historique ;
     private Tache[] taches_non_panifiées;
