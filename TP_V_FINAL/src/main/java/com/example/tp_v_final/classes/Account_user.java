@@ -1,10 +1,10 @@
 package com.example.tp_v_final.classes;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.*;
+import java.io.EOFException;
 
 public class Account_user implements Serializable{
     private String user_name;
@@ -36,21 +36,35 @@ public class Account_user implements Serializable{
     public boolean Authentification() {
         boolean isFound = false;
 
-        try (
-                BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
-            String line;
+        try (FileInputStream fileIn = new FileInputStream(FILENAME);
+             ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
+      /*      Account_user account = (Account_user) objectIn.readObject();
 
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split("\n"); // Séparation des données par le saut de ligne
-                String filePseudo = data[0];
-                if (user_name.equals(filePseudo)) {
+            if (account.getUser_name().equals(user_name)) {
+                isFound = true;
+            }*/
+            List<Account_user> userList = new ArrayList<>();
+
+            while (true) {
+                try {
+                    Account_user account = (Account_user) objectIn.readObject();
+                    userList.add(account);
+                } catch (EOFException e) {
+                    // Fin de fichier atteinte
+                    break;
+                }
+            }
+
+            for (Account_user account : userList) {
+                if (account.getUser_name().equals(user_name)) {
                     isFound = true;
                     break;
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         return isFound;
     }
 

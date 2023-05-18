@@ -44,7 +44,7 @@ public class ControleurAccountUser {
 
     private void passerAPageSuivante() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("com.example.tp_v_final.Interfaces/Acceuil.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
             Parent root = loader.load();
 
             // Obtenez une référence au Stage actuel

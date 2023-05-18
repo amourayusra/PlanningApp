@@ -26,6 +26,7 @@ public class HelloApplication extends Application {
 
             // Sauvegarde des objets dans le fichier
             objectOut.writeObject(new Account_user("User1", null));
+            objectOut.writeObject(new Account_user("User2", null));
 
             System.out.println("Les objets ont été sauvegardés dans le fichier " + "user.ser");
         } catch (IOException e) {
