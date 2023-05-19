@@ -6,10 +6,10 @@ public abstract class Tache {
     protected int priorite;
     protected int duree;
     protected LocalDate deadline;
-    protected Categorie categorie;
+    protected String categorie;
     protected int bloque;
 
-    public Tache(String nom, int priorite, int duree, LocalDate deadline, Categorie categorie) {
+    public Tache(String nom, int priorite, int duree, LocalDate deadline, String categorie) {
         this.nom = nom;
         this.priorite = priorite;
         this.duree = duree;
@@ -33,7 +33,7 @@ public abstract class Tache {
         return deadline;
     }
 
-    public Categorie getCategorie() {
+    public String getCategorie() {
         return categorie;
     }
 

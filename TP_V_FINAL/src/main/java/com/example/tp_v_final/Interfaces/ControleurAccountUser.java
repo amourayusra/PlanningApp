@@ -1,5 +1,6 @@
 package com.example.tp_v_final.Interfaces;
 import com.example.tp_v_final.classes.Account_user;
+import com.example.tp_v_final.classes.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,7 +34,7 @@ public class ControleurAccountUser {
 
         if (isAuthenticated) {
             // Authentification réussie
-            passerAPageSuivante();
+            passerAPageSuivante(accountUser.getUser());
         } else {
             // Authentification échouée
             afficherMessageErreur("Vous n'etes pas inscrit");
@@ -42,10 +43,15 @@ public class ControleurAccountUser {
 
 
 
-    private void passerAPageSuivante() {
+    private void passerAPageSuivante(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
             Parent root = loader.load();
+            // Obtenez une référence au contrôleur de la page d'accueil
+            ControleurAcceuil controleurAcceuil = loader.getController();
+
+            // Transmettez l'objet User au contrôleur de la page d'accueil
+            controleurAcceuil.setUser(user);
 
             // Obtenez une référence au Stage actuel
             Stage stage = (Stage) btn_login.getScene().getWindow();

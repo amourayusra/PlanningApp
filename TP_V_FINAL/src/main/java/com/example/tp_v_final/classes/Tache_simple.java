@@ -7,9 +7,10 @@ public class Tache_simple extends Tache {
     private boolean estPeriodique;
     private int periode;
 
-    public Tache_simple(String nom, int priorite, int duree, LocalDate deadline, Categorie categorie) {
+    public Tache_simple(String nom, int priorite, int duree, LocalDate deadline, String categorie, boolean estPeriodique , int periode) {
         super(nom, priorite, duree, deadline, categorie);
-        estPeriodique = false;
+        this.estPeriodique = estPeriodique;
+        this.periode = periode;
     }
 
     public void planifier_auto(Jour jour) {
