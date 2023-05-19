@@ -4,17 +4,19 @@ import java.util.*;
 import java.time.*;
 
 public class Jour {
-    private LocalDateTime date;
+    private LocalDate date;
     private LinkedList<Créneaux> creneaux;
+    private int nbmin ;
+    private int progress;
 
-    public Jour(LocalDateTime date) {
+    public Jour(LocalDate date) {
         this.date = date;
         this.creneaux = new LinkedList<Créneaux>();
     }
 
+    /***************************************************************************************/
     public List<Créneaux> ChercheCreneauLibre(){
         List<Créneaux> creneauxLibres = new ArrayList<>();
-
         for (Créneaux creneau : this.creneaux) {
             if (creneau.isEstLibre()) {
                 creneauxLibres.add(creneau);
@@ -22,7 +24,7 @@ public class Jour {
         }
         return creneauxLibres;
     }
-
+    /***************************************************************************************/
     public void ajouterCreneau(Créneaux nouveauCreneau) {
         if (this.creneaux.isEmpty()) {
             this.creneaux.add(nouveauCreneau);
@@ -47,17 +49,39 @@ public class Jour {
             this.creneaux.add(nouveauCreneau);
         }
     }
-    /********************************les seteur and Geteur***********************************************/
+    /***************************************************************************************/
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
-
-    public LinkedList<Créneaux> getCreneaux() {
+    /***************************************************************************************/
+   /* public Collection<? extends String> getCreneaux() {
         return creneaux;
+    }*/
+    /***************************************************************************************/
+    public LinkedList getCreneaux () { return creneaux;}
+    /***************************************************************************************/
+    public String toString() {
+        String chaine = "";
+        for (Créneaux creneau : this.creneaux) {
+            chaine = chaine.concat(creneau.toString()+"\n");
+        }
+        return chaine;
     }
+    /***************************************************************************************/
+    public void setCreneaux(LinkedList<Créneaux> objects) {
+        this.creneaux=objects;
 
-
-
-
+    }
+    /***************************************************************************************/
+    public void setProgress(int p){
+        this.progress=p;
+    }
+    /***************************************************************************************/
+    public int calculRentabilite() {return 0;}
 }
+
+
+
+
+

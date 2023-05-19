@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_v_final.Interfaces.StatsController">
+   <children>
+      <Text fill="#232946" layoutX="38.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Le nombre de badges gagné :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fill="#232946" layoutX="38.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La moyenne du rendement journalier :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fill="#232946" layoutX="37.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de fois ou vous avez eu un encouragement :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fill="#232946" layoutX="37.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Le jour ou il a été le plus rentable : ">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text fx:id="badge" layoutX="222.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="rendement" layoutX="277.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="encouragement" layoutX="363.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="jour_rentable" layoutX="251.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+   </children>
+</AnchorPane>

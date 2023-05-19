@@ -6,9 +6,9 @@ public class Tache_decomposable extends Tache {
 
     private Tache[] sous_taches;
 
-    public Tache_decomposable(String nom, int priorite, int duree, LocalDate deadline, Categorie categorie, Tache[] sous_taches) {
+    public Tache_decomposable(String nom, int priorite, int duree, LocalDate deadline, String categorie) {
         super(nom, priorite, duree, deadline, categorie);
-        this.sous_taches = sous_taches;
+        this.sous_taches = null;
     }
 
     @Override

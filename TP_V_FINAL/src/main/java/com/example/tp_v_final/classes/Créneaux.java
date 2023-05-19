@@ -7,21 +7,20 @@ import java.time.temporal.ChronoUnit;
 
 public class Créneaux {
 
-
-    private LocalDateTime debut;
-    private LocalDateTime fin;
+    private LocalTime debut;
+    private LocalTime fin;
     private Tache tacheAffectee;
     private boolean estLibre;
     private int dureeMin;
 
-    public Créneaux(LocalDateTime debut, LocalDateTime fin, int dureeMin) {
+    public Créneaux(LocalTime debut, LocalTime fin, int dureeMin) {
         this.debut = debut;
         this.fin = fin;
         this.estLibre = true;
         this.tacheAffectee = null;
         this.dureeMin = dureeMin;
     }
-
+/****************************************************************************************************/
     public LinkedList<Créneaux> decomposerCreneaux(Tache tache) {
 
         LinkedList<Créneaux> creneauxDecomp = new LinkedList<>();
@@ -36,14 +35,14 @@ public class Créneaux {
             creneauxDecomp.add(this);
             return creneauxDecomp;
         } else if (creneauDuree > tache.getDuree()) {
-            LocalDateTime debutCreneau1 = debut;
-            LocalDateTime finCreneau1 = debutCreneau1.plusMinutes(tache.getDuree());
+            LocalTime debutCreneau1 = debut;
+            LocalTime finCreneau1 = debutCreneau1.plusMinutes(tache.getDuree());
             Créneaux creneau1 = new Créneaux(debutCreneau1, finCreneau1, this.dureeMin);
             creneau1.setEstLibre(false);
             creneau1.setTacheAffectee(tache);
             creneauxDecomp.add(creneau1);
-            LocalDateTime debutCreneau2 = finCreneau1;
-            LocalDateTime finCreneau2 = fin;
+            LocalTime debutCreneau2 = finCreneau1;
+            LocalTime finCreneau2 = fin;
             Créneaux creneau2 = new Créneaux(debutCreneau2, finCreneau2, this.dureeMin);
             creneauxDecomp.add(creneau2);
             return creneauxDecomp;
@@ -55,7 +54,7 @@ public class Créneaux {
         }
     }
 
-
+    /****************************************************************************************************/
 
     public int calculerDuree() {
         long minutes = ChronoUnit.MINUTES.between(debut, fin);
@@ -64,20 +63,20 @@ public class Créneaux {
 
 
     /********************************les seteur and Geteur***********************************************/
-    public LocalDateTime getDebut() {
+    public LocalTime getDebut() {
         return debut;
     }
 
-    public void setDebut(LocalDateTime debut) {
+    public void setDebut(LocalTime debut) {
         this.debut = debut;
     }
 
-    public LocalDateTime getFin() {
+    public LocalTime getFin() {
         return fin;
     }
 
 
-    public void setFin(LocalDateTime fin) {
+    public void setFin(LocalTime fin) {
         this.fin = fin;
     }
 
@@ -104,9 +103,13 @@ public class Créneaux {
         this.dureeMin = dureeMin;
     }
     public String toString() {
+        String chaine;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         String debutHeureMinute = debut.format(formatter);
         String finHeureMinute = fin.format(formatter);
-        return "Début : " + debutHeureMinute + ", Fin : " + finHeureMinute;
+      //  chaine= "Début : " + debutHeureMinute + ", Fin : " + finHeureMinute;
+        chaine= debutHeureMinute + " -> " + finHeureMinute;
+        if ( tacheAffectee!=null ) chaine=chaine+"\n"+tacheAffectee.getNom();
+        return chaine;
     }
 }
