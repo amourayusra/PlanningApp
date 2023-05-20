@@ -155,8 +155,9 @@ public class ControleurAcceuil {
 
     }
     @FXML
-    void onCalendrier (ActionEvent event) throws IOException {
+    void onCalendrier () throws IOException {
         try {
+            System.out.println("rani hna");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
             Parent root = loader.load();
             CalendarController controleurCalendrier = loader.getController();
@@ -165,12 +166,13 @@ public class ControleurAcceuil {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     @FXML
-    void onStats (ActionEvent event) throws IOException {
+    void onStats () throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
             Parent root = loader.load();
