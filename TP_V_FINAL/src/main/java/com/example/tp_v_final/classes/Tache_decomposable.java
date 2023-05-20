@@ -1,6 +1,7 @@
 package com.example.tp_v_final.classes;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Tache_decomposable extends Tache {
 
@@ -13,22 +14,21 @@ public class Tache_decomposable extends Tache {
 
     @Override
     public void planifier_auto(Jour jour) {
-       /* int tempsRestant = this.duree;
+      /* int tempsRestant = this.duree;
         int i=1;
         List<Créneaux> creneauxLibres =   jour.ChercheCreneauLibre();
         for (Créneaux creneau : creneauxLibres) {
-            if ((creneau.calculerDuree()>=duree ) && ( creneau.getFin() <= deadline ) && ( creneau.getDureeMin() <= duree ) {
+            if ((creneau.calculerDuree()>=duree ) && ( creneau.getDureeMin() <= duree )) {
                 creneau.setTacheAffectee(this);
                 break;
             } else {
                 for (Créneaux creneau : creneauxLibres) {
-                    (creneau.getFin() <= deadline) {
                         Tache nvl_tache=new Tache(this.nom+i, creneau.calculerDuree());
                         creneau.setTacheAffectee(nvl_tache);
                         sous_taches[i-1]=nvl_tache;
                         i++;
                         tempsRestant -= creneau.calculerDuree();
-                    }
+
                 }
             }
         }*/

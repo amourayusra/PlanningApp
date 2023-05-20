@@ -1,5 +1,7 @@
 package com.example.tp_v_final.classes;
+
 import com.example.tp_v_final.classes.*;
+
 import java.time.temporal.ChronoUnit;
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -46,6 +48,30 @@ public class Calendrier implements Serializable {
         return jours;
     }
 
+    public void planifierAuto(Tache tache) {
+
+        LocalDate currentDate = LocalDate.now();
+
+        while (!currentDate.isAfter(tache.getDeadline())) {
+
+            for (Jour jour : jours) {
+
+                if (jour.getDate().equals(currentDate)) {
+
+                    tache.planifier_auto(jour);
+
+                    break;
+
+                }
+
+            }
+
+            currentDate = currentDate.plusDays(1);
+
+        }
+
+    }
+
     public void replanifier() {
        /* PriorityQueue<Tache> fileAttente = new PriorityQueue<>();
         for ( Jour jour : jours ) {
@@ -76,11 +102,13 @@ public class Calendrier implements Serializable {
     public LocalDate getDebut() {
         return periode_debut;
     }
+
     public LocalDate getFin() {
         return periode_fin;
     }
+
     public Jour getDayOfMonth(LocalDate DayOfMonth) {
-        Jour selectedDay=null;
+        Jour selectedDay = null;
         for (Jour jour : jours) {
             if (jour.getDate().equals(DayOfMonth)) {
                 selectedDay = jour;

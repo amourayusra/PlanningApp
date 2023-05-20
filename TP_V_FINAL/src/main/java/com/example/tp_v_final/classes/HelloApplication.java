@@ -21,7 +21,7 @@ import java.time.LocalDate;
     }
 
     public static void main(String[] args) {
-   /*   try (FileOutputStream fileOut = new FileOutputStream("user.ser");
+     try (FileOutputStream fileOut = new FileOutputStream("user.ser");
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
             // Sauvegarde des objets dans le fichier
             objectOut.writeObject(new Account_user("User1", new User(6)));
@@ -29,7 +29,7 @@ import java.time.LocalDate;
             System.out.println("Les objets ont été sauvegardés dans le fichier " + "user.ser");
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
         launch(args);
 
     }
