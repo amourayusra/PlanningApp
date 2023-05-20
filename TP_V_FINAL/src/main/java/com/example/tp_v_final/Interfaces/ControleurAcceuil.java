@@ -1,12 +1,11 @@
 package com.example.tp_v_final.Interfaces;
 
-import com.example.tp_v_final.classes.Categorie;
-import com.example.tp_v_final.classes.Tache_decomposable;
-import com.example.tp_v_final.classes.Tache;
+import com.example.tp_v_final.classes.*;
 
-import com.example.tp_v_final.classes.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -17,7 +16,9 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.ListView;
 import javafx.collections.FXCollections;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class ControleurAcceuil {
     @FXML
     void initialize() {
         // Initialise la ComboBox avec les types de catégories existantes
-        CategorieBox.setItems(FXCollections.observableArrayList(Categorie.getTypeList()));
+       /* CategorieBox.setItems(FXCollections.observableArrayList(Categorie.getTypeList()));
 
         // Configuration du Spinner pour le champ 'duree'
         SpinnerValueFactory<Integer> dureeValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
@@ -111,7 +112,7 @@ public class ControleurAcceuil {
                 listeTaches.setItems(FXCollections.observableArrayList(nomsTaches));
 
             }
-        });
+        });*/
     }
 
     @FXML
@@ -128,5 +129,22 @@ public class ControleurAcceuil {
         user.ajouterTacheDecomposable(nom_tache.getText(), priorite.getValue(), duree.getValue(), deadline.getValue(), selectedCategorie);
 
     }
-
+    @FXML
+    void onCalendrier () throws IOException { //nouvelle partie
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/tp_v_final/interfaces/Calendar.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+        Stage stage = new Stage();
+        stage.setTitle("Calendrier");
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void onStats () throws IOException { //nouvelle partie
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/tp_v_final/interfaces/Stats.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+        Stage stage = new Stage();
+        stage.setTitle("Statistiques");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

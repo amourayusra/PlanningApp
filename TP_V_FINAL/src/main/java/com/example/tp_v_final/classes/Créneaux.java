@@ -109,7 +109,7 @@ public class Créneaux {
         String finHeureMinute = fin.format(formatter);
       //  chaine= "Début : " + debutHeureMinute + ", Fin : " + finHeureMinute;
         chaine= debutHeureMinute + " -> " + finHeureMinute;
-        if ( tacheAffectee!=null ) chaine=chaine+"\n"+tacheAffectee.getNom();
+        if ( tacheAffectee!=null ) chaine=chaine+" : "+tacheAffectee.getNom();
         return chaine;
     }
 }

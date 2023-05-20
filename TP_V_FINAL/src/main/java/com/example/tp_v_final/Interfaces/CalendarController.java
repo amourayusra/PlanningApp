@@ -3,14 +3,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Font;
+import java.util.Locale;
+import java.time.Month;
+import java.time.YearMonth;
 import javafx.scene.text.Text;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.DayOfWeek;
 import java.util.List;
 import java.util.LinkedList;
 import java.net.URL;
@@ -25,11 +33,14 @@ import com.example.tp_v_final.classes.Tache;
 import com.example.tp_v_final.classes.Tache_simple;
 
 public class CalendarController implements Initializable {
-
+    @FXML
+    private Text cr;
     @FXML
     private FlowPane calendar;
     @FXML
-    private YearMonth displayedMonth;
+    private Text year;
+    @FXML
+    private Text month;
   /*  @FXML
     private ListView<Créneaux> listView;*/
 
@@ -137,6 +148,7 @@ public class CalendarController implements Initializable {
     }
 
  */
+    /*
 @Override
 public void initialize(URL location, ResourceBundle resources) {
     // Initialize the calendar with a date
@@ -147,7 +159,6 @@ public void initialize(URL location, ResourceBundle resources) {
     LocalDate currentDate = LocalDate.now();
     LocalDate DayOfMonth = currentDate.withDayOfMonth(1);
     Jour[] j=new Jour[31];
-    /*
     Tache Tache1=new Tache_simple("yusra",2,12,currentDate);
     Tache Tache2=new Tache_simple("amina",2,12,currentDate);
     Créneaux creneau1=new Créneaux(LocalTime.now(),LocalTime.now(),2);
@@ -156,13 +167,15 @@ public void initialize(URL location, ResourceBundle resources) {
     creneau2.setTacheAffectee(Tache2);
     LinkedList<Créneaux> cr=new LinkedList<Créneaux>();
     cr.add(creneau1);
-    cr.add(creneau2);*/
+    cr.add(creneau2);
     for (i = 0; i < displayedMonth.lengthOfMonth(); i++) {
         j[i] = new Jour(DayOfMonth);
        //j[0].setCreneaux(cr);
 
         System.out.println(j[i].toString());
-        Button button = new Button(j[i].toString());
+        TextArea textArea = new TextArea(j[i].toString());
+        textArea.setEditable(false);
+        ScrollPane button = new ScrollPane(textArea);
         button.setPrefWidth(100);
         button.setPrefHeight(100);
         calendar.getChildren().add(button);
@@ -172,14 +185,77 @@ public void initialize(URL location, ResourceBundle resources) {
     year.setText(String.valueOf(currentDate.getYear()));
     month.setText(currentDate.getMonth().toString());
 }
+*/
 /*-------------------------------------------------------------------------------------------------------------------*/
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+showMonth(YearMonth.now());
+}
+
+public void showMonth(YearMonth displayedMonth){
+    int i;
+    LocalDate currentDate = LocalDate.now();
+    year.setText(String.valueOf(currentDate.getYear()));
+    month.setText(currentDate.getMonth().toString());
+    LocalDate DayOfMonth = currentDate.withDayOfMonth(1);
+    Jour[] j=new Jour[31];
+    Tache Tache1=new Tache_simple("yusra",2,12,currentDate,"",true,2);
+    Tache Tache2=new Tache_simple("amina",2,12,currentDate,"",false,3);
+    Créneaux creneau1=new Créneaux(LocalTime.now(),LocalTime.now(),2);
+    creneau1.setTacheAffectee(Tache1);
+    Créneaux creneau2=new Créneaux(LocalTime.now(),LocalTime.now(),2);
+    creneau2.setTacheAffectee(Tache2);
+    LinkedList<Créneaux> crn=new LinkedList<Créneaux>();
+    crn.add(creneau1);
+    crn.add(creneau2);
+
+    LocalDate firstDayOfMonth = currentDate.withDayOfMonth(1);
+    DayOfWeek firstDayOfWeek = firstDayOfMonth.getDayOfWeek();
+    for (int k = 1; k < firstDayOfWeek.getValue()+1; k++) {
+        System.out.println("hey");
+        // You can add empty labels or spaces here
+        Label emptyLabel = new Label(" ");
+        emptyLabel.setPrefHeight(50);
+        emptyLabel.setPrefWidth(80);
+        calendar.getChildren().add(emptyLabel);
+    }
+    for (i = 0; i < displayedMonth.lengthOfMonth(); i++) {
+        j[i] = new Jour(DayOfMonth);
+        System.out.println(j[i].toString());
+        j[0].setCreneaux(crn);
+        Button button = new Button(String.valueOf(j[i].getDate().getDayOfMonth()));
+        final int index = i; // Create a final copy of i
+
+        button.setOnAction(event -> {
+
+            cr.setText(j[index].toString());
+        });
+        button.setPrefWidth(80);
+        button.setPrefHeight(50);
+        calendar.getChildren().add(button);
+        DayOfMonth = DayOfMonth.plusDays(1);
+    }
+
+}
     @FXML
     private void backOneMonth(ActionEvent event) {
+
 
     }
 
     @FXML
     private void forwardOneMonth(ActionEvent event) {
+    /*
+        int yearValue = Integer.parseInt(year.getText());
+        String monthText = month.getText();
 
+        // Get the current displayed month
+        YearMonth displayedMonth = YearMonth.of(yearValue, Month.valueOf(monthText.toUpperCase()));
+
+        // Add one month to the displayed month
+        displayedMonth = displayedMonth.plusMonths(1);
+
+        // Update the calendar view with the new month
+        showMonth(displayedMonth);*/
     }
 }
