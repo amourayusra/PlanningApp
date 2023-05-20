@@ -39,6 +39,8 @@ public class ControleurAccountUser {
             // Authentification réussie
             accountUser.getUser().setCalendar(new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6)));
             System.out.println(accountUser.getUser());
+            System.out.println(accountUser.getUser().getCalendar().getDebut());
+
             passerAPageSuivante(accountUser.getUser());
 
         } else {

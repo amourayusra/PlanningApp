@@ -32,7 +32,8 @@ public class CalendarController implements Initializable {
 /*-------------------------------------------------------------------------------------------------------------------*/
 @Override
 public void initialize(URL location, ResourceBundle resources) {
-   calendrier=new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6));
+  // calendrier=new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6));
+    setUser(new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6)));
     showMonth(YearMonth.now());
 }
 
