@@ -1,5 +1,6 @@
 package com.example.tp_v_final.Interfaces;
 import com.example.tp_v_final.classes.Account_user;
+import com.example.tp_v_final.classes.Calendrier;
 import com.example.tp_v_final.classes.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javafx.scene.control.Alert;
 
 public class ControleurAccountUser {
@@ -34,7 +37,10 @@ public class ControleurAccountUser {
 
         if (isAuthenticated) {
             // Authentification réussie
+            accountUser.getUser().setCalendar(new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6)));
+            System.out.println(accountUser.getUser());
             passerAPageSuivante(accountUser.getUser());
+
         } else {
             // Authentification échouée
             afficherMessageErreur("Vous n'etes pas inscrit");

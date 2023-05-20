@@ -1,14 +1,9 @@
 package com.example.tp_v_final.Interfaces;
-
 import com.example.tp_v_final.classes.*;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-<<<<<<< HEAD
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-=======
->>>>>>> 406bd012889fd6e72310ee6f5b1f3d3af521b1a1
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -160,7 +155,7 @@ public class ControleurAcceuil {
 
     }
     @FXML
-    void onCalendrier () throws IOException {
+    void onCalendrier (ActionEvent event) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
             Parent root = loader.load();
@@ -175,7 +170,7 @@ public class ControleurAcceuil {
         }
     }
     @FXML
-    void onStats () throws IOException {
+    void onStats (ActionEvent event) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
             Parent root = loader.load();

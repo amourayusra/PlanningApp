@@ -60,5 +60,8 @@ public User (int nb_encouragement){
     public List<Tache> getTaches_non_panifiées() {
         return taches_non_panifiées;
     }
+    public void setCalendar(Calendrier calendar){
+        this.calendrier=calendar;
+    }
 
 }

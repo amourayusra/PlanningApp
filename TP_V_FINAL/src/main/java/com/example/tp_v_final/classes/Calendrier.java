@@ -1,6 +1,6 @@
 package com.example.tp_v_final.classes;
-import com.example.tp_v_final.classes.Jour;
-
+import com.example.tp_v_final.classes.*;
+import java.time.temporal.ChronoUnit;
 import java.io.Serializable;
 import java.util.LinkedList;
 
@@ -12,16 +12,18 @@ public class Calendrier implements Serializable {
     private LocalDate periode_debut;
     private LocalDate periode_fin;
 
-    public Calendrier( LocalDate debut, LocalDate fin , Jour[] jours){
-        this.periode_debut=debut;
-        this.periode_fin=fin;
-        this.jours=jours;
+    public Calendrier(LocalDate debut, LocalDate fin) {
+        this.periode_debut = debut;
+        this.periode_fin = fin;
+        initJours();
     }
-    public void fixer_periode(LocalDate debut, LocalDate fin ){
-        this.periode_debut=debut;
-        this.periode_fin=fin;
+
+    public void fixer_periode(LocalDate debut, LocalDate fin) {
+        this.periode_debut = debut;
+        this.periode_fin = fin;
     }
-    public void ajouter_tache_simple_manuelle(LocalDate date,Tache tache){
+
+    public void ajouter_tache_simple_manuelle(LocalDate date, Tache tache) {
         for (Jour jour : jours) {
             if (jour.getDate().equals(date)) {
                 tache.planifier_auto(jour);
@@ -31,16 +33,20 @@ public class Calendrier implements Serializable {
     }
 
     public LinkedList getCréneauxForDay(LocalDate date) {
-        LinkedList<Créneaux> result=new LinkedList<>();
+        LinkedList<Créneaux> result = new LinkedList<>();
         for (Jour jour : jours) {
             if (jour.getDate().equals(date)) {
-                result=jour.getCreneaux();
+                result = jour.getCreneaux();
             }
         }
         return result;
     }
-    public Jour[] getJours(){ return jours; }
-    public void replanifier () {
+
+    public Jour[] getJours() {
+        return jours;
+    }
+
+    public void replanifier() {
        /* PriorityQueue<Tache> fileAttente = new PriorityQueue<>();
         for ( Jour jour : jours ) {
             for ( Créneaux creneau : Jour.getCreneaux()) {
@@ -51,23 +57,54 @@ public class Calendrier implements Serializable {
             Tache tache = fileAttente.poll();
             tache.planifier_auto();*/
     }
+
     /*******************************************************************/
-    public LocalDate jourRentable(){
-        LocalDate dateMax=jours[0].getDate();
-        long max =jours[0].calculRentabilite();
-        for ( int i=0;i<jours.length;i++ ){
-            if ( jours[i].calculRentabilite()>max){
-                max=jours[i].calculRentabilite();
-                dateMax=jours[i].getDate();
+    public LocalDate jourRentable() {
+        LocalDate dateMax = jours[0].getDate();
+        long max = jours[0].calculRentabilite();
+        for (int i = 0; i < jours.length; i++) {
+            if (jours[i].calculRentabilite() > max) {
+                max = jours[i].calculRentabilite();
+                dateMax = jours[i].getDate();
             }
         }
         return dateMax;
     }
 
     /*******************************************************************/
-<<<<<<< HEAD
-    public LocalDate getDebut (){return periode_debut;}
+
+    public LocalDate getDebut() {
+        return periode_debut;
     }
-=======
+    public LocalDate getFin() {
+        return periode_fin;
+    }
+    public Jour getDayOfMonth(LocalDate DayOfMonth) {
+        Jour selectedDay=null;
+        for (Jour jour : jours) {
+            if (jour.getDate().equals(DayOfMonth)) {
+                selectedDay = jour;
+                break;
+            }
+        }
+        return selectedDay;
+    }
+
+    public void initJours() {
+        long daysBetween = ChronoUnit.DAYS.between(periode_debut, periode_fin);
+        jours = new Jour[(int) daysBetween + 1];
+        LocalDate currentDate = periode_debut;
+        for (int i = 0; i < jours.length; i++) {
+            jours[i] = new Jour(currentDate);
+            currentDate = currentDate.plusDays(1);
+        }
+        /*
+        for (int i = 0; i < jours.length; i++) {
+            System.out.println(jours[i].getDate()+"\n");
+        }*/
+    }
 }
->>>>>>> 406bd012889fd6e72310ee6f5b1f3d3af521b1a1
+
+
+
+
