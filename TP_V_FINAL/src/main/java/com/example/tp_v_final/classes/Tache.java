@@ -7,7 +7,6 @@ public abstract class Tache {
     protected int duree;
     protected LocalDate deadline;
     protected String categorie;
-    protected int bloque;
 
     public Tache(String nom, int priorite, int duree, LocalDate deadline, String categorie) {
         this.nom = nom;

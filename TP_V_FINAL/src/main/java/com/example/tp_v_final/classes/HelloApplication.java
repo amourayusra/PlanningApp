@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 public class HelloApplication extends Application {
-    @Override
+  /*  @Override
 
         public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/tp_v_final/interfaces/hello-view.fxml"));
@@ -17,7 +17,19 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+<<<<<<< HEAD
     }
+=======
+    }*/
+   public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/tp_v_final/Interfaces/hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+>>>>>>> 406bd012889fd6e72310ee6f5b1f3d3af521b1a1
     public static void main(String[] args) {
         try (FileOutputStream fileOut = new FileOutputStream("user.ser");
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
