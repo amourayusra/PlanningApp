@@ -132,7 +132,7 @@ public class ControleurAcceuil {
     @FXML
     void onCalendrier () throws IOException { //nouvelle partie
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/tp_v_final/interfaces/Calendar.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 500);
         Stage stage = new Stage();
         stage.setTitle("Calendrier");
         stage.setScene(scene);
@@ -141,7 +141,7 @@ public class ControleurAcceuil {
     @FXML
     void onStats () throws IOException { //nouvelle partie
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/tp_v_final/interfaces/Stats.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 500);
         Stage stage = new Stage();
         stage.setTitle("Statistiques");
         stage.setScene(scene);

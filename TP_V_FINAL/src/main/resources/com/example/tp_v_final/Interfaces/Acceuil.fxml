@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_v_final.Interfaces.ControleurAcceuil">
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_v_final.Interfaces.ControleurAcceuil">
    <children>
-      <TabPane layoutY="-5.0" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: beige;" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="-5.0" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: beige;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Acceuil" />
           <Tab onSelectionChanged="#onCalendrier" text="Calendrier">

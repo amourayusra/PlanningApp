@@ -7,7 +7,8 @@ public class Jour {
     private LocalDate date;
     private LinkedList<Créneaux> creneaux;
     private int nbmin ;
-    private int progress;
+    private int progress=5;
+    private int prevu=2;
 
     public Jour(LocalDate date) {
         this.date = date;
@@ -62,10 +63,11 @@ public class Jour {
     public LinkedList getCreneaux () { return creneaux;}
     /***************************************************************************************/
     public String toString() {
-        String chaine = "";
+        String chaine = "Taches affectées : \n";
         for (Créneaux creneau : this.creneaux) {
             chaine = chaine.concat(creneau.toString()+"\n");
         }
+        chaine=chaine+"\n \n Quelques Statistiques du jour :\n- Son rendement journalier de ce jour : "+String.valueOf(progress/prevu );
         return chaine;
     }
     /***************************************************************************************/
