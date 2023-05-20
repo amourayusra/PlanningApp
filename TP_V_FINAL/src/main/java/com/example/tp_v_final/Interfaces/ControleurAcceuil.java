@@ -4,20 +4,12 @@ import com.example.tp_v_final.classes.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.stage.Stage;
-
+import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,20 +56,44 @@ public class ControleurAcceuil {
     private Tab tache_simple;
 
     @FXML
-    private ListView<String> listeTaches;
+    private TableView<Tache> listeTaches;
+
+    @FXML
+    private Button planifierButton;
+
+
+    @FXML
+    private TableColumn<Tache, String> ColmC;
+
+    @FXML
+    private TableColumn<Tache, Integer> ColmD;
+
+    @FXML
+    private TableColumn<Tache, Integer> ColmDu;
+
+    @FXML
+    private TableColumn<Tache, String> ColmN;
+
+    @FXML
+    private TableColumn<Tache, Integer> ColmP;
+
+    @FXML
+    private TableColumn<Tache, String> ColmT;
+
     private User user;
 
     public void setUser(User user) {
+        System.out.println(user);
         this.user = user;
     }
 
     @FXML
     void initialize() {
         // Initialise la ComboBox avec les types de catégories existantes
-       /* CategorieBox.setItems(FXCollections.observableArrayList(Categorie.getTypeList()));
+        CategorieBox.setItems(FXCollections.observableArrayList(Categorie.getTypeList()));
 
         // Configuration du Spinner pour le champ 'duree'
-        SpinnerValueFactory<Integer> dureeValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
+        SpinnerValueFactory<Integer> dureeValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000, 1);
         duree.setValueFactory(dureeValueFactory);
 
         // Configuration du Spinner pour le champ 'periode'
@@ -85,7 +101,7 @@ public class ControleurAcceuil {
         periode.setValueFactory(periodeValueFactory);
 
         // Configuration du Spinner pour le champ 'priorite'
-        SpinnerValueFactory<Integer> prioriteValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
+        SpinnerValueFactory<Integer> prioriteValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 3, 1);
         priorite.setValueFactory(prioriteValueFactory);
         // Activer l'éditeur pour le champ 'duree'
         duree.setEditable(true);
@@ -95,31 +111,35 @@ public class ControleurAcceuil {
 
         // Activer l'éditeur pour le champ 'priorite'
         priorite.setEditable(true);
+
+        //Afficher les Tache non planifier
         AfficherTache.setOnSelectionChanged(event -> {
             if (AfficherTache.isSelected()) {
-                // L'onglet "Afficher Tache" a été sélectionné
-
-                // Récupérer toutes les tâches non planifiées de l'utilisateur
+                // Configurez les cellules des colonnes pour afficher les données de la tâche
+                ColmN.setCellValueFactory(new PropertyValueFactory<>("nom"));
+                ColmP.setCellValueFactory(new PropertyValueFactory<>("priorite"));
+                ColmDu.setCellValueFactory(new PropertyValueFactory<>("duree"));
+                ColmC.setCellValueFactory(new PropertyValueFactory<>("categorie"));
+                ColmD.setCellValueFactory(new PropertyValueFactory<>("deadline"));
+                ColmT.setCellValueFactory(new PropertyValueFactory<>("deadline"));
+                // Configurez d'autres colonnes avec les attributs correspondants de la tâche
+                // Récupérez toutes les tâches non planifiées de l'utilisateur
                 List<Tache> tachesNonPlanifiees = user.getTaches_non_panifiées();
 
-                // Créer une liste de noms de tâches
-                List<String> nomsTaches = new ArrayList<>();
-                for (Tache tache : tachesNonPlanifiees) {
-                    nomsTaches.add(tache.getNom()); // Ajouter le nom de la tâche à la liste
-                }
+                // Ajoutez les tâches à la TableView
+                listeTaches.setItems(FXCollections.observableArrayList(tachesNonPlanifiees));
 
-                // Afficher les noms des tâches dans la ListView
-                listeTaches.setItems(FXCollections.observableArrayList(nomsTaches));
-
+                // Définissez la sélection multiple dans la TableView
+                listeTaches.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             }
-        });*/
+        });
     }
 
     @FXML
     void AjoterTacheSimple(ActionEvent event) {
         String selectedCategorie = CategorieBox.getValue();
         boolean estPeriodique = periodique.isSelected();
-        user.ajouterTacheSimple(nom_tache.getText(), priorite.getValue(), duree.getValue(), deadline.getValue(), selectedCategorie,estPeriodique,periode.getValue());
+        user.ajouterTacheSimple(nom_tache.getText(), priorite.getValue(), duree.getValue(), deadline.getValue(), selectedCategorie, estPeriodique, periode.getValue());
 
     }
 
@@ -127,6 +147,11 @@ public class ControleurAcceuil {
     void AjouterTacheDecomposable(ActionEvent event) {
         String selectedCategorie = CategorieBox.getValue();
         user.ajouterTacheDecomposable(nom_tache.getText(), priorite.getValue(), duree.getValue(), deadline.getValue(), selectedCategorie);
+
+    }
+
+    @FXML
+    void PlanifierTache(ActionEvent event) {
 
     }
     @FXML
@@ -147,4 +172,5 @@ public class ControleurAcceuil {
         stage.setScene(scene);
         stage.show();
     }
+
 }

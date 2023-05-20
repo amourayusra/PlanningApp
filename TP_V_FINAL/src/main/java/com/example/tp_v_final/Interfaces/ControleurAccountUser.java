@@ -44,6 +44,7 @@ public class ControleurAccountUser {
 
 
     private void passerAPageSuivante(User user) {
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
             Parent root = loader.load();
