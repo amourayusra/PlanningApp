@@ -63,4 +63,5 @@ public class Calendrier {
     }
 
     /*******************************************************************/
+    public LocalDate getDebut (){return periode_debut;}
     }

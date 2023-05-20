@@ -37,10 +37,10 @@ public class StatsController  implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        User user =new User(5);
        // badge.setText(String.valueOf(user.getNbBadges()));
        // jour_rentable.setText(String.valueOf(user.getCalendar().jourRentable()));
         encouragement.setText(String.valueOf(user.getEncouragement()));
       // rendement.setText(String.valueOf(user.getNbBadges()));
     }
+    public void setUser(User user){this.user=user;}
 }

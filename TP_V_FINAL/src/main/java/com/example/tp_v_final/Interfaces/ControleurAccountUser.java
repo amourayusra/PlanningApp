@@ -27,7 +27,7 @@ public class ControleurAccountUser {
         // Vous pouvez également récupérer le mot de passe de la même manière
 
         // Créez une instance de la classe AccountUser
-        Account_user accountUser = new Account_user(username, null);
+        Account_user accountUser = new Account_user(username,null);
 
         // Appelez la méthode Authentifier en lui passant les données saisies par l'utilisateur
         boolean isAuthenticated = accountUser.Authentification();

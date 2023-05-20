@@ -5,6 +5,7 @@ import com.example.tp_v_final.classes.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -130,21 +131,33 @@ public class ControleurAcceuil {
 
     }
     @FXML
-    void onCalendrier () throws IOException { //nouvelle partie
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/tp_v_final/interfaces/Calendar.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 500);
-        Stage stage = new Stage();
-        stage.setTitle("Calendrier");
-        stage.setScene(scene);
-        stage.show();
+    void onCalendrier () throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
+            Parent root = loader.load();
+            CalendarController controleurCalendrier = loader.getController();
+            controleurCalendrier.setUser(user.getCalendar());
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
-    void onStats () throws IOException { //nouvelle partie
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/tp_v_final/interfaces/Stats.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 500);
-        Stage stage = new Stage();
-        stage.setTitle("Statistiques");
-        stage.setScene(scene);
-        stage.show();
+    void onStats () throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
+            Parent root = loader.load();
+            StatsController controleurStats = loader.getController();
+            controleurStats.setUser(user);
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

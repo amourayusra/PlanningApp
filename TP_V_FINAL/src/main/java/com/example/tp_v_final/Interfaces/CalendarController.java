@@ -1,17 +1,13 @@
 package com.example.tp_v_final.Interfaces;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import java.util.Locale;
 import java.time.Month;
 import java.time.YearMonth;
 import javafx.scene.text.Text;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,7 +29,10 @@ import com.example.tp_v_final.classes.Tache;
 import com.example.tp_v_final.classes.Tache_simple;
 
 public class CalendarController implements Initializable {
-
+    @FXML
+    DatePicker debut;
+    @FXML
+    DatePicker fin;
     @FXML
     private Text cr;
     @FXML
@@ -42,8 +41,6 @@ public class CalendarController implements Initializable {
     private Text year;
     @FXML
     private Text month;
-  /*  @FXML
-    private ListView<Créneaux> listView;*/
 
     private Calendrier calendrier;
 /*
@@ -192,7 +189,7 @@ public void initialize(URL location, ResourceBundle resources) {
 public void initialize(URL location, ResourceBundle resources) {
 showMonth(YearMonth.now());
 }
-
+public void setUser(Calendrier calendar){ this.calendrier=calendar;}
 public void showMonth(YearMonth displayedMonth){
     int i;
     LocalDate currentDate = LocalDate.now();
@@ -258,5 +255,10 @@ public void showMonth(YearMonth displayedMonth){
 
         // Update the calendar view with the new month
         showMonth(displayedMonth);*/
+    }
+    @FXML
+    private void OnFixPeriod( ActionEvent event){
+    calendrier.fixer_periode(debut.getValue(), fin.getValue());
+        System.out.println(calendrier.getDebut());
     }
 }
