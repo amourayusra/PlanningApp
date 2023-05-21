@@ -4,7 +4,7 @@ import java.time.temporal.ChronoUnit;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-import java.time.LocalDate;
+import java.time.*;
 
 public class Calendrier implements Serializable {
 
@@ -104,8 +104,10 @@ public class Calendrier implements Serializable {
         }*/
     }
 
-    public void addLibresAll(int debut, int fin){
+    public void addLibresAll(LocalTime debut, LocalTime fin, int min){
         for (int i = 0; i < jours.length; i++) {
+                Créneaux cr=new Créneaux(debut,fin,min);
+            jours[i].ajouterCreneau(cr);
         }
     }
 }

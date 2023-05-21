@@ -4,7 +4,6 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.*;
-
 public class Categorie {
     private static List<String> type =new ArrayList<>(Arrays.asList("work"));
     private static List<Color> color = new ArrayList<>(Arrays.asList(Color.AQUA));
