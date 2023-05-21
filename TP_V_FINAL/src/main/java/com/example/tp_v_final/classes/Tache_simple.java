@@ -1,9 +1,10 @@
 package com.example.tp_v_final.classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Tache_simple extends Tache {
+public class Tache_simple extends Tache implements Serializable {
     private boolean estPeriodique;
     private int periode;
 

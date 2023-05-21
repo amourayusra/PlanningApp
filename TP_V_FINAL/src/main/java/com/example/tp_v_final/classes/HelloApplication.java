@@ -23,7 +23,7 @@ import java.util.HashMap;
 
     public static void main(String[] args) {
         // Création de la HashMap avec des utilisateurs et des pseudonymes
-        HashMap<String, User> userMap = new HashMap<>();
+      /*  HashMap<String, User> userMap = new HashMap<>();
         userMap.put("User1", new User());
         userMap.put("User2", new User(6));
 
@@ -35,7 +35,7 @@ import java.util.HashMap;
             System.out.println("le fichier a ete cree");
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         launch(args);
 
     }

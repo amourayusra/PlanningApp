@@ -17,6 +17,18 @@ import java.util.List;
 public class ControleurAcceuil {
 
     @FXML
+    private ColorPicker Color;
+
+    @FXML
+    private TextField Type;
+
+    @FXML
+    private Button AjoutCatB;
+
+    @FXML
+    private Button save;
+
+    @FXML
     private Tab AfficherTache;
 
     @FXML
@@ -85,10 +97,14 @@ public class ControleurAcceuil {
     private TableColumn<Tache, String> ColmT;
 
     private User user;
+    private String pseudo;
 
     public void setUser(User user) {
-        System.out.println(user);
         this.user = user;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
     @FXML
@@ -219,5 +235,16 @@ public class ControleurAcceuil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    void addCategorie(ActionEvent event) {
+        Categorie.addCategorie(Type.getText(),Color.getValue());
+        initialize();
+    }
+
+    @FXML
+    void sauvgarder(ActionEvent event) {
+        Account_user account = new Account_user();
+        account.save(user, pseudo);
     }
 }

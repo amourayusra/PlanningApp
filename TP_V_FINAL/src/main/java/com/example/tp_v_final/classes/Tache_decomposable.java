@@ -1,9 +1,10 @@
 package com.example.tp_v_final.classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Tache_decomposable extends Tache {
+public class Tache_decomposable extends Tache implements Serializable {
 
     private Tache[] sous_taches;
 

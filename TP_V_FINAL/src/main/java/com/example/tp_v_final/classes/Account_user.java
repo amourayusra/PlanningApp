@@ -31,7 +31,9 @@ public class Account_user implements Serializable {
         return userMap.containsKey(user_name);
     }
 
-    public void save() {
+    public void save(User user, String pseudo) {
+        userMap.put(pseudo, user);
+
         try (FileOutputStream fileOut = new FileOutputStream(FILENAME);
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
 

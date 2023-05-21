@@ -1,11 +1,12 @@
 package com.example.tp_v_final.classes;
 
+import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.time.*;
 import java.util.*;
 import java.time.temporal.ChronoUnit;
 
-public class Créneaux {
+public class Créneaux implements Serializable {
 
     private LocalTime debut;
     private LocalTime fin;

@@ -1,7 +1,8 @@
 package com.example.tp_v_final.classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-public abstract class Tache {
+public abstract class Tache implements Serializable {
     protected String nom;
     protected int priorite;
     protected int duree;
