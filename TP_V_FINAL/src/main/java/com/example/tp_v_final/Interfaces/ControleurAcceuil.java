@@ -17,15 +17,6 @@ import java.util.List;
 public class ControleurAcceuil {
 
     @FXML
-    private ColorPicker Color;
-
-    @FXML
-    private TextField Type;
-
-    @FXML
-    private Button AjoutCatB;
-
-    @FXML
     private Tab AfficherTache;
 
     @FXML
@@ -45,6 +36,10 @@ public class ControleurAcceuil {
 
     @FXML
     private Tab form_ajout_tache;
+    @FXML
+    private Tab Calendar;
+    @FXML
+    private Tab Stats;
 
     @FXML
     private TextField nom_tache;
@@ -90,11 +85,6 @@ public class ControleurAcceuil {
     private TableColumn<Tache, String> ColmT;
 
     private User user;
-    private CalendarController calControleur;
-
-    public void setMainController(CalendarController calControleur) {
-        this.calControleur = calControleur;
-    }
 
     public void setUser(User user) {
         System.out.println(user);
@@ -103,50 +93,82 @@ public class ControleurAcceuil {
 
     @FXML
     void initialize() {
-// Initialise la ComboBox avec les types de catégories existantes
+        // Initialise la ComboBox avec les types de catégories existantes
         CategorieBox.setItems(FXCollections.observableArrayList(Categorie.getTypeList()));
 
-// Configuration du Spinner pour le champ 'duree'
+        // Configuration du Spinner pour le champ 'duree'
         SpinnerValueFactory<Integer> dureeValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000, 1);
         duree.setValueFactory(dureeValueFactory);
 
-// Configuration du Spinner pour le champ 'periode'
+        // Configuration du Spinner pour le champ 'periode'
         SpinnerValueFactory<Integer> periodeValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
         periode.setValueFactory(periodeValueFactory);
 
-// Configuration du Spinner pour le champ 'priorite'
+        // Configuration du Spinner pour le champ 'priorite'
         SpinnerValueFactory<Integer> prioriteValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 3, 1);
         priorite.setValueFactory(prioriteValueFactory);
-// Activer l'éditeur pour le champ 'duree'
+        // Activer l'éditeur pour le champ 'duree'
         duree.setEditable(true);
 
-// Activer l'éditeur pour le champ 'periode'
+        // Activer l'éditeur pour le champ 'periode'
         periode.setEditable(true);
 
-// Activer l'éditeur pour le champ 'priorite'
+        // Activer l'éditeur pour le champ 'priorite'
         priorite.setEditable(true);
 
-//Afficher les Tache non planifier
+        //Afficher les Tache non planifier
         AfficherTache.setOnSelectionChanged(event -> {
             if (AfficherTache.isSelected()) {
-// Configurez les cellules des colonnes pour afficher les données de la tâche
+                // Configurez les cellules des colonnes pour afficher les données de la tâche
                 ColmN.setCellValueFactory(new PropertyValueFactory<>("nom"));
                 ColmP.setCellValueFactory(new PropertyValueFactory<>("priorite"));
                 ColmDu.setCellValueFactory(new PropertyValueFactory<>("duree"));
                 ColmC.setCellValueFactory(new PropertyValueFactory<>("categorie"));
                 ColmD.setCellValueFactory(new PropertyValueFactory<>("deadline"));
                 ColmT.setCellValueFactory(new PropertyValueFactory<>("deadline"));
-// Configurez d'autres colonnes avec les attributs correspondants de la tâche
-// Récupérez toutes les tâches non planifiées de l'utilisateur
+                // Configurez d'autres colonnes avec les attributs correspondants de la tâche
+                // Récupérez toutes les tâches non planifiées de l'utilisateur
                 List<Tache> tachesNonPlanifiees = user.getTaches_non_panifiées();
 
-// Ajoutez les tâches à la TableView
+                // Ajoutez les tâches à la TableView
                 listeTaches.setItems(FXCollections.observableArrayList(tachesNonPlanifiees));
 
-// Définissez la sélection multiple dans la TableView
+                // Définissez la sélection multiple dans la TableView
                 listeTaches.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             }
         });
+        /*
+        Calendar.setOnSelectionChanged(event -> {
+            if (Calendar.isSelected()) {
+                try{
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
+                    Parent root = loader.load();
+                    CalendarController controleurCalendrier = loader.getController();
+                    controleurCalendrier.setUser(user.getCalendar());
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+            catch(IOException e) {
+                        e.printStackTrace();}}
+            }
+
+            });
+        Stats.setOnSelectionChanged(event -> {
+            if (Stats.isSelected()) {
+                try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
+                Parent root = loader.load();
+                CalendarController controleurCalendrier = loader.getController();
+                controleurCalendrier.setUser(user.getCalendar());
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }catch(IOException e) {
+                    e.printStackTrace();}}
+
+        });*/
     }
 
     @FXML
@@ -166,33 +188,19 @@ public class ControleurAcceuil {
 
     @FXML
     void PlanifierTache(ActionEvent event) {
-// Obtenez la tâche sélectionnée
-        Tache tacheSelectionnee = listeTaches.getSelectionModel().getSelectedItem();
 
-        if (tacheSelectionnee != null) {
-// Utilisez la valeur sélectionnée dans user.getCalendar().planifierAuto()
-            user.getCalendar().planifierAuto(tacheSelectionnee);
-
-        } else {
-// Aucune tâche sélectionnée, affichez un message d'erreur ou effectuez une autre action appropriée
-            System.out.println("Aucune tâche sélectionnée.");
-        }
     }
-
     @FXML
     void onCalendrier () throws IOException {
         try {
-            System.out.println("rani hna");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
             Parent root = loader.load();
             CalendarController controleurCalendrier = loader.getController();
             controleurCalendrier.setUser(user.getCalendar());
-            controleurCalendrier.setMainController(this);
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -203,7 +211,7 @@ public class ControleurAcceuil {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
             Parent root = loader.load();
             StatsController controleurStats = loader.getController();
-            controleurStats.initialize(user);
+            controleurStats.setUser(user);
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -212,11 +220,4 @@ public class ControleurAcceuil {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    void addCategorie(ActionEvent event) {
-        Categorie.addCategorie(Type.getText(),Color.getValue());
-        initialize();
-    }
-
 }

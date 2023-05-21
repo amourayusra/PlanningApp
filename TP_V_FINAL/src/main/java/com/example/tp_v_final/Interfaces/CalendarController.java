@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
-
 import java.io.IOException;
 import java.time.*;
 import javafx.scene.text.Text;
@@ -126,6 +125,7 @@ public void showMonth(YearMonth displayedMonth){
     }
     @FXML
     private void OnAddCr(){
+
         calendrier.addLibresAll(Integer.parseInt(cr_debut.getText()),Integer.parseInt(cr_fin.getText()));
     }
 }
