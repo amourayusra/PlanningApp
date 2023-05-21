@@ -24,7 +24,7 @@ import com.example.tp_v_final.classes.Jour;
 import com.example.tp_v_final.classes.Tache;
 import com.example.tp_v_final.classes.User;
 import com.example.tp_v_final.classes.Tache_simple;
-public class StatsController  implements Initializable{
+public class StatsController{
     @FXML
     Text rendement ;
     @FXML
@@ -35,12 +35,12 @@ public class StatsController  implements Initializable{
     Text encouragement;
     private User user;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-       // badge.setText(String.valueOf(user.getNbBadges()));
-       // jour_rentable.setText(String.valueOf(user.getCalendar().jourRentable()));
-          encouragement.setText(String.valueOf(user.getEncouragement()));
-      // rendement.setText(String.valueOf(user.getNbBadges()));
+
+    public void initialize(User user) {
+      //  badge.setText(String.valueOf(user.getNbBadges()));
+      //  jour_rentable.setText(String.valueOf(user.getCalendar().jourRentable()));
+        encouragement.setText(String.valueOf(user.getEncouragement()));
+      //  rendement.setText(String.valueOf(user.getNbBadges()));
     }
     public void setUser(User user){this.user=user;}
 }

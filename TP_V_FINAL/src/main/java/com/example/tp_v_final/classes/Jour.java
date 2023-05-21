@@ -63,12 +63,15 @@ public class Jour {
     public LinkedList getCreneaux () { return creneaux;}
     /***************************************************************************************/
     public String toString() {
-        String chaine = "Taches affectées : \n";
+        String chaine="";
         for (Créneaux creneau : this.creneaux) {
             chaine = chaine.concat(creneau.toString()+"\n");
         }
-        chaine=chaine+"\n \n Quelques Statistiques du jour :\n- Son rendement journalier de ce jour : "+String.valueOf(progress/prevu );
+
         return chaine;
+    }
+    public String toStats(){
+        return "- Son rendement journalier de ce jour : "+String.valueOf(progress/prevu );
     }
     /***************************************************************************************/
     public void setCreneaux(LinkedList<Créneaux> objects) {

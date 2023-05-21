@@ -1,13 +1,15 @@
 package com.example.tp_v_final.classes;
 
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.*;
 
 public class Categorie {
     private static List<String> type =new ArrayList<>(Arrays.asList("work"));
-    private static List<String> color = new ArrayList<>(Arrays.asList("red"));
+    private static List<Color> color = new ArrayList<>(Arrays.asList(Color.AQUA));
 
-    public Categorie(String typee, String coulor) {
+    public Categorie(String typee, Color coulor) {
         type.add(typee);
         color.add(coulor);
     }
@@ -16,11 +18,11 @@ public class Categorie {
         return type;
     }
 
-    public static List<String> getColorList() {
+    public static List<Color> getColorList() {
         return color;
     }
 
-    public static void addCategorie(String typee, String coulor) {
+    public static void addCategorie(String typee, Color coulor) {
         type.add(typee);
         color.add(coulor);
     }
@@ -33,4 +35,3 @@ public class Categorie {
         }
     }
 }
-

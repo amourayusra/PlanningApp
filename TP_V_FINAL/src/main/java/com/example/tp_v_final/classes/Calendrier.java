@@ -103,6 +103,33 @@ public class Calendrier implements Serializable {
             System.out.println(jours[i].getDate()+"\n");
         }*/
     }
+    public void planifierAuto(Tache tache) {
+
+        LocalDate currentDate = LocalDate.now();
+
+        while (!currentDate.isAfter(tache.getDeadline())) {
+
+            for (Jour jour : jours) {
+
+                if (jour.getDate().equals(currentDate)) {
+
+                    tache.planifier_auto(jour);
+
+                    break;
+
+                }
+
+            }
+
+            currentDate = currentDate.plusDays(1);
+
+        }
+
+    }
+    public void addLibresAll(int debut, int fin){
+        for (int i = 0; i < jours.length; i++) {
+        }
+    }
 }
 
 

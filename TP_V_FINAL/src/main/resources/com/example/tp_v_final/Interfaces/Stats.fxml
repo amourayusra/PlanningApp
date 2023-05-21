@@ -31,7 +31,7 @@
       <Text fx:id="rendement" layoutX="281.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
       <Text fx:id="encouragement" layoutX="367.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
       <Text fx:id="jour_rentable" layoutX="255.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Label alignment="CENTER" layoutX="195.0" layoutY="28.0" prefHeight="62.0" prefWidth="510.0" text="Statisiques" textAlignment="CENTER" textFill="#ff5e5e">
+      <Label alignment="CENTER" layoutX="195.0" layoutY="28.0" prefHeight="62.0" prefWidth="510.0" text="Statistiques" textAlignment="CENTER" textFill="#ff5e5e">
          <font>
             <Font name="Arial Black" size="42.0" />
          </font>
