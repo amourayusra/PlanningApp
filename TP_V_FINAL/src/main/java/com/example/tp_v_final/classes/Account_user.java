@@ -1,73 +1,48 @@
 package com.example.tp_v_final.classes;
-import java.io.IOException;
-import java.io.Serializable;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.*;
-import java.io.EOFException;
 
-public class Account_user implements Serializable{
-    private String user_name;
-    private User user;
-    private static final String FILENAME = "user.ser";
+public class Account_user implements Serializable {
+    private HashMap<String, User> userMap;
+    private static final String FILENAME = "users.ser";
 
-    public Account_user(String user_name, User user) {
-        this.user_name = user_name;
-        this.user = user;
-    }
-
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-
-    public boolean Authentification() {
-        boolean isFound = false;
-
+    public Account_user() {
+        userMap = new HashMap<>();
         try (FileInputStream fileIn = new FileInputStream(FILENAME);
              ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
-      /*      Account_user account = (Account_user) objectIn.readObject();
 
-            if (account.getUser_name().equals(user_name)) {
-                isFound = true;
-            }*/
-            List<Account_user> userList = new ArrayList<>();
+            userMap = (HashMap<String, User>) objectIn.readObject();
+            System.out.println("Les objets ont été chargés depuis le fichier " + FILENAME);
 
-            while (true) {
-                try {
-                    Account_user account = (Account_user) objectIn.readObject();
-                    userList.add(account);
-                } catch (EOFException e) {
-                    // Fin de fichier atteinte
-                    break;
-                }
-            }
-
-            for (Account_user account : userList) {
-                if (account.getUser_name().equals(user_name)) {
-                    setUser(account.getUser());
-                    isFound = true;
-                    break;
-                }
-            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
-        return isFound;
+    public void addUser(String user_name, User user) {
+        userMap.put(user_name, user);
+    }
+
+    public User getUser(String user_name) {
+        return userMap.get(user_name);
+    }
+
+    public boolean Authentification(String user_name) {
+        return userMap.containsKey(user_name);
+    }
+
+    public void save() {
+        try (FileOutputStream fileOut = new FileOutputStream(FILENAME);
+             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
+
+            objectOut.writeObject(userMap);
+            System.out.println("Les objets ont été sauvegardés dans le fichier " + FILENAME);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
 }
+

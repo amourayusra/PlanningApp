@@ -30,17 +30,17 @@ public class ControleurAccountUser {
         // Vous pouvez également récupérer le mot de passe de la même manière
 
         // Créez une instance de la classe AccountUser
-        Account_user accountUser = new Account_user(username,null);
+        Account_user accountUser = new Account_user();
 
         // Appelez la méthode Authentifier en lui passant les données saisies par l'utilisateur
-        boolean isAuthenticated = accountUser.Authentification();
+        boolean isAuthenticated = accountUser.Authentification(pseudo.getText());
 
         if (isAuthenticated) {
             // Authentification réussie
-            accountUser.getUser().setCalendar(new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6)));
-            System.out.println(accountUser.getUser());
-            System.out.println(accountUser.getUser().getCalendar().getDebut());
-            passerAPageSuivante(accountUser.getUser());
+            accountUser.getUser(pseudo.getText()).setCalendar(new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6)));
+            System.out.println(accountUser.getUser(pseudo.getText()));
+            System.out.println(accountUser.getUser(pseudo.getText()).getCalendar().getDebut());
+            passerAPageSuivante(accountUser.getUser(pseudo.getText()));
 
         } else {
             // Authentification échouée

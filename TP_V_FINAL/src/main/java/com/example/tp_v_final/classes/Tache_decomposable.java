@@ -14,25 +14,41 @@ public class Tache_decomposable extends Tache {
 
     @Override
     public void planifier_auto(Jour jour) {
-      /* int tempsRestant = this.duree;
-        int i=1;
-        List<Créneaux> creneauxLibres =   jour.ChercheCreneauLibre();
-        for (Créneaux creneau : creneauxLibres) {
-            if ((creneau.calculerDuree()>=duree ) && ( creneau.getDureeMin() <= duree )) {
-                creneau.setTacheAffectee(this);
-                break;
-            } else {
-                for (Créneaux creneau : creneauxLibres) {
-                        Tache nvl_tache=new Tache(this.nom+i, creneau.calculerDuree());
-                        creneau.setTacheAffectee(nvl_tache);
-                        sous_taches[i-1]=nvl_tache;
-                        i++;
-                        tempsRestant -= creneau.calculerDuree();
+        int tempsRestant = this.duree;
+        int i = 1;
+        List<Créneaux> creneauxLibres = jour.ChercheCreneauLibre();
+        boolean tachePlanifiee = false;
 
+        for (Créneaux creneau : creneauxLibres) {
+            if (creneau.calculerDuree() >= duree && creneau.getDureeMin() <= duree) {
+                creneau.setTacheAffectee(this);
+                tachePlanifiee = true;
+                break;
+            }
+        }
+
+        if (!tachePlanifiee) {
+            for (Créneaux creneau : creneauxLibres) {
+                int creneauDuree = creneau.calculerDuree();
+                if (tempsRestant <= creneauDuree) {
+                    Tache nvl_tache = new Tache_decomposable(this.nom,this.getPriorite(),this.getDuree(),this.getDeadline(),this.categorie);
+                    creneau.setTacheAffectee(nvl_tache);
+                    sous_taches[i - 1] = nvl_tache;
+                    tempsRestant = 0;
+                    creneau.setEstLibre(false);
+                    break;
+                } else {
+                    Tache nvl_tache = new Tache_decomposable(this.nom+i ,this.getPriorite(),creneau.calculerDuree(),this.getDeadline(),this.categorie);
+                    creneau.setTacheAffectee(nvl_tache);
+                    sous_taches[i - 1] = nvl_tache;
+                    tempsRestant -= creneauDuree;
+                    creneau.decomposerCreneaux(nvl_tache);
+                    i++;
                 }
             }
-        }*/
+        }
     }
+
    @Override
    public void planifier_manuel(Créneaux creneau){
 

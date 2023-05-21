@@ -1,5 +1,8 @@
 package com.example.tp_v_final.classes;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +71,7 @@ public class User implements Serializable {
 
     public void ajouterProjet() {
     }
+
 
     /**************** l'utilisateur peut ajouter une instance de tache decomposable****************************/
     public void ajouterTacheDecomposable(String nom, int priorite, int duree, LocalDate deadline, String categorie) {

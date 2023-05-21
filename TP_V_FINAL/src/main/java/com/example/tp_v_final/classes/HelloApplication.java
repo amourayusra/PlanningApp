@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
 
  public class HelloApplication extends Application {
  @Override
@@ -21,12 +22,17 @@ import java.time.LocalDate;
     }
 
     public static void main(String[] args) {
-      try (FileOutputStream fileOut = new FileOutputStream("user.ser");
+        // Création de la HashMap avec des utilisateurs et des pseudonymes
+        HashMap<String, User> userMap = new HashMap<>();
+        userMap.put("User1", new User());
+        userMap.put("User2", new User(6));
+
+        try (FileOutputStream fileOut = new FileOutputStream("users.ser");
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
-            // Sauvegarde des objets dans le fichier
-            objectOut.writeObject(new Account_user("User1", new User(6)));
-            objectOut.writeObject(new Account_user("User2", new User()));
-            System.out.println("Les objets ont été sauvegardés dans le fichier " + "user.ser");
+
+            objectOut.writeObject(userMap);
+
+            System.out.println("le fichier a ete cree");
         } catch (IOException e) {
             e.printStackTrace();
         }
