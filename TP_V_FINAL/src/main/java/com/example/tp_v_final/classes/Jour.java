@@ -1,9 +1,10 @@
 package com.example.tp_v_final.classes;
 
+import java.io.Serializable;
 import java.util.*;
 import java.time.*;
 
-public class Jour {
+public class Jour implements Serializable {
     private LocalDate date;
     private LinkedList<Créneaux> creneaux;
     private int nbmin ;

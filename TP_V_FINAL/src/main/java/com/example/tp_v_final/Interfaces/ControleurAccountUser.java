@@ -60,6 +60,7 @@ public class ControleurAccountUser {
 
             // Transmettez l'objet User au contrôleur de la page d'accueil
             controleurAcceuil.setUser(user);
+            controleurAcceuil.setPseudo(pseudo.getText());
 
             // Obtenez une référence au Stage actuel
             Stage stage = (Stage) btn_login.getScene().getWindow();

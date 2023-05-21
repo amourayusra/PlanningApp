@@ -2,9 +2,11 @@ package com.example.tp_v_final.classes;
 
 import javafx.scene.paint.Color;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.*;
-public class Categorie {
+
+public class Categorie implements Serializable {
     private static List<String> type =new ArrayList<>(Arrays.asList("work"));
     private static List<Color> color = new ArrayList<>(Arrays.asList(Color.AQUA));
 

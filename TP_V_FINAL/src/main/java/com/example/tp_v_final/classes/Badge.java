@@ -1,6 +1,8 @@
 package com.example.tp_v_final.classes;
 
-public enum Badge {
+import java.io.Serializable;
+
+public enum Badge implements Serializable {
     VeryGood,
     Good,
     Excellent
