@@ -71,6 +71,7 @@ public void initialize(Calendrier calendar) {
     }
     heure_debut.setItems(hoursList);
     heure_fin.setItems(hoursList);
+
     // Initialize the minutes ComboBox
     ObservableList<Integer> minutesList = FXCollections.observableArrayList();
     for (int i = 0; i <= 59; i++) {
@@ -84,9 +85,9 @@ public void initialize(Calendrier calendar) {
     ampm.add("pm");
     ampmDebut.setItems(ampm);
     ampmFin.setItems(ampm);
-   //calendrier=new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6));
+   calendrier=new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6));
    setUser(calendar);
-    showMonth(YearMonth.now());
+   showMonth(YearMonth.now());
 }
 
 /*-------------------------------------------------------------------------------------------------------------------*/

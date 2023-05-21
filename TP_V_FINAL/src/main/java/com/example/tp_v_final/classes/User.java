@@ -24,6 +24,7 @@ public class User implements Serializable {
         this.nb_encouragement = nb_encouragement;// bach ntesti stats
         taches_non_panifiées = new ArrayList<>();
         badges = new ArrayList<>();
+
     }
 
     public User() {
