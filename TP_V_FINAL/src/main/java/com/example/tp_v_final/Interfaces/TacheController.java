@@ -48,8 +48,8 @@ public class TacheController  {
 @FXML
     public void OnAddCr(){
 
-        réneaux cr=new Créneaux(Integer.parseInt(cr_debut.getText()),Integer.parseInt(cr_fin.getText()),2);
-        jour.ajouterCreneau(cr);
+       // Créneaux cr=new Créneaux(Integer.parseInt(cr_debut.getText()),Integer.parseInt(cr_fin.getText()),2);
+       // jour.ajouterCreneau(cr);
 }
 
 }
