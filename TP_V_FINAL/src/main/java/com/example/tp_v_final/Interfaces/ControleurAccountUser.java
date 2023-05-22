@@ -43,8 +43,10 @@ public class ControleurAccountUser {
             passerAPageSuivante(accountUser.getUser(pseudo.getText()));
 
         } else {
-            // Authentification échouée
-            afficherMessageErreur("Vous n'etes pas inscrit");
+            // Authentification échouée et creation d'un compte
+            accountUser.addUser(username,new User());
+            afficherMessageErreur("Vous n'etes pas inscrit, mais on vous a cree un nouveau compte");
+
         }
     }
 

@@ -23,14 +23,13 @@ public class Tache_simple extends Tache implements Serializable {
             //cherchons un creneaux qui corespond
             for (Créneaux creneau : creneauxLibres) {
                 //conditions de planification d'une tache
-                if ((creneau.calculerDuree() >= this.getDuree())&&(this.duree > creneau.getDureeMin())) {
+                if ((creneau.calculerDuree() >= this.getDuree())&&(this.duree >= creneau.getDureeMin())) {
                     //si le creneau satisfait les condition on le decompose
                     LinkedList<Créneaux> creneauxDecomp = creneau.decomposerCreneaux(this);
                     // Décomposition du créneau du jour en deux
                     if (creneauxDecomp.size() == 2) {
                         // enlever l'ancien creneau de la liste des créneaux de la journée
                         jour.getCreneaux().remove(creneau);
-
                         // ajouter les deux nouveaux créneaux dans la liste des créneaux de la journée
                         jour.ajouterCreneau(creneauxDecomp.get(0));//occuper
                         jour.ajouterCreneau(creneauxDecomp.get(1));//libre

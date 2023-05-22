@@ -1,4 +1,5 @@
 package com.example.tp_v_final.Interfaces;
+
 import com.example.tp_v_final.classes.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +97,12 @@ public class ControleurAcceuil {
 
     @FXML
     private TableColumn<Tache, String> ColmT;
+
+    private CalendarController calendarController;
+
+    public void setCalendarController(CalendarController controller) {
+        this.calendarController = controller;
+    }
 
     private User user;
     private String pseudo;
@@ -214,13 +222,15 @@ public class ControleurAcceuil {
         }
 
     }
+
     @FXML
-    void onCalendrier () throws IOException {
+    void onCalendrier() throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
             Parent root = loader.load();
-            CalendarController controleurCalendrier = loader.getController();
-            controleurCalendrier.initialize(user.getCalendar());
+            System.out.println("hhhhaaniii"+ user.getCalendar().getJours()[1].getDate());
+            calendarController = loader.getController();
+            calendarController.initialize(user.getCalendar());
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -229,8 +239,9 @@ public class ControleurAcceuil {
             e.printStackTrace();
         }
     }
+
     @FXML
-    void onStats () throws IOException {
+    void onStats() throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
             Parent root = loader.load();
@@ -244,15 +255,18 @@ public class ControleurAcceuil {
             e.printStackTrace();
         }
     }
+
     @FXML
     void addCategorie(ActionEvent event) {
-        Categorie.addCategorie(Type.getText(),Color.getValue());
+        Categorie.addCategorie(Type.getText(), Color.getValue());
         initialize();
     }
 
     @FXML
     void sauvgarder(ActionEvent event) {
         Account_user account = new Account_user();
+        user.setCalendar(calendarController.getCalendrier());
+        System.out.println("hhhhaaniii"+account.getUser(pseudo).getCalendar().getJours()[1].getDate());
         account.save(user, pseudo);
     }
 }
