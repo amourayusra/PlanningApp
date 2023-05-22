@@ -7,9 +7,9 @@ import java.time.*;
 public class Jour implements Serializable {
     private LocalDate date;
     private LinkedList<Créneaux> creneaux;
-    private int nbmin ;
-    private int progress=5;
-    private int prevu=2;
+    private int nbmin;
+    private int progress = 5;
+    private int prevu = 2;
 
     public Jour(LocalDate date) {
         this.date = date;
@@ -17,7 +17,7 @@ public class Jour implements Serializable {
     }
 
     /***************************************************************************************/
-    public List<Créneaux> ChercheCreneauLibre(){
+    public List<Créneaux> ChercheCreneauLibre() {
         List<Créneaux> creneauxLibres = new ArrayList<>();
         for (Créneaux creneau : this.creneaux) {
             if (creneau.isEstLibre()) {
@@ -26,6 +26,7 @@ public class Jour implements Serializable {
         }
         return creneauxLibres;
     }
+
     /***************************************************************************************/
     public void ajouterCreneau(Créneaux nouveauCreneau) {
         if (this.creneaux.isEmpty()) {
@@ -51,6 +52,7 @@ public class Jour implements Serializable {
             this.creneaux.add(nouveauCreneau);
         }
     }
+
     /***************************************************************************************/
 
     public LocalDate getDate() {
@@ -60,35 +62,49 @@ public class Jour implements Serializable {
    /* public Collection<? extends String> getCreneaux() {
         return creneaux;
     }*/
+
     /***************************************************************************************/
-    public LinkedList getCreneaux () { return creneaux;}
+    public LinkedList getCreneaux() {
+        return creneaux;
+    }
+
     /***************************************************************************************/
     public String toString() {
-        String chaine="";
+        String chaine = "";
         for (Créneaux creneau : this.creneaux) {
-            chaine = chaine.concat(creneau.toString()+"\n");
+            chaine = chaine.concat(creneau.toString() + "\n");
         }
 
         return chaine;
     }
-    public String toStats(){
-        return "- Son rendement journalier de ce jour : "+String.valueOf(progress/prevu );
+
+    public String toStats() {
+        return "- Son rendement journalier de ce jour : " + String.valueOf(progress / prevu);
     }
+
     /***************************************************************************************/
     public void setCreneaux(LinkedList<Créneaux> objects) {
-        this.creneaux=objects;
+        this.creneaux = objects;
+    }
 
-    }
     /***************************************************************************************/
-    public void setProgress(int p){
-        this.progress=p;
+    public void setProgress(int p) {
+        this.progress = p;
     }
+
     /***************************************************************************************/
-    public int calculRentabilite() {return 0;}
-    public List getTaches(){
-        List<Tache> liste=null;
+    public int calculRentabilite() {
+        return 0;
+    }
+
+    public List getTaches() {
+
+        List<Tache> liste =  new ArrayList<>();
         for (Créneaux creneau : this.creneaux) {
+            System.out.println("ani hna\n");
+            System.out.println("\npsps " + creneau.getTacheAffectee().getNom());
             liste.add(creneau.getTacheAffectee());
+
         }
         return liste;
     }

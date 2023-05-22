@@ -2,6 +2,7 @@ package com.example.tp_v_final.Interfaces;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.util.LinkedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -73,12 +74,23 @@ public class TacheController {
         ampmFin.setItems(ampm);
 
         setUser(jour);
-        // cr.setText(jour.toString());
         Stats.setText(jour.toStats());
         date.setText(jour.getDate().toString());
         System.out.println(jour.getDate().toString());
-
+        Tache Tache1=new Tache_simple("yusra",2,12,LocalDate.now(),"",true,2);
+        Tache Tache2=new Tache_simple("amina",2,12,LocalDate.now(),"",false,3);
+        Créneaux creneau1=new Créneaux(LocalTime.now(),LocalTime.now(),2);
+        creneau1.setTacheAffectee(Tache1);
+        Créneaux creneau2=new Créneaux(LocalTime.now(),LocalTime.now(),2);
+        creneau2.setTacheAffectee(Tache2);
+        LinkedList<Créneaux> crn=new LinkedList<Créneaux>();
+        crn.add(creneau1);
+        crn.add(creneau2);
+        jour.setCreneaux(crn);
+        System.out.println("heu  "+jour.getTaches());
         List<Tache> tasks = jour.getTaches();
+
+
         ObservableList<String> taskNames = FXCollections.observableArrayList();
         for (Tache task : tasks) {
             taskNames.add(task.getNom());
@@ -104,12 +116,16 @@ public class TacheController {
                     setGraphic(null);
                 } else {
                     label.setText(taskName);
-                    checkBox.setSelected(getTaskCompletionStatus(taskName));
+                    Tache task = findTaskByName(taskName);
+                    if (task != null) {
+                        checkBox.setSelected(task.isCompleted() == true);
+                    } else {
+                        checkBox.setSelected(false);
+                    }
                     setGraphic(hbox);
                 }
             }
         });
-
     }
 
     public void setUser(Jour jour) {
