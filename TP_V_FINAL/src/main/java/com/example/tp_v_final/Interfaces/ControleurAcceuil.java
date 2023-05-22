@@ -204,6 +204,14 @@ public class ControleurAcceuil {
 
     @FXML
     void PlanifierTache(ActionEvent event) {
+        // Récupérer la tâche sélectionnée
+        Tache tacheSelectionnee = listeTaches.getSelectionModel().getSelectedItem();
+
+        // Vérifier si une tâche est sélectionnée
+        if (tacheSelectionnee != null) {
+            // Appeler la méthode existante pour planifier la tâche
+            user.getCalendar().planifierAuto(tacheSelectionnee);
+        }
 
     }
     @FXML
@@ -212,7 +220,7 @@ public class ControleurAcceuil {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
             Parent root = loader.load();
             CalendarController controleurCalendrier = loader.getController();
-            controleurCalendrier.setUser(user.getCalendar());
+            controleurCalendrier.initialize(user.getCalendar());
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);

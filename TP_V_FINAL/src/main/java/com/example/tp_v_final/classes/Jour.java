@@ -85,6 +85,13 @@ public class Jour implements Serializable {
     }
     /***************************************************************************************/
     public int calculRentabilite() {return 0;}
+    public List getTaches(){
+        List<Tache> liste=null;
+        for (Créneaux creneau : this.creneaux) {
+            liste.add(creneau.getTacheAffectee());
+        }
+        return liste;
+    }
 }
 
 

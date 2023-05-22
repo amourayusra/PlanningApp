@@ -18,6 +18,7 @@ public class Calendrier implements Serializable {
         initJours();
     }
 
+
     public void fixer_periode(LocalDate debut, LocalDate fin) {
         this.periode_debut = debut;
         this.periode_fin = fin;
@@ -40,6 +41,20 @@ public class Calendrier implements Serializable {
             }
         }
         return result;
+    }
+    public void planifierAuto(Tache tache) {
+
+        LocalDate currentDate = LocalDate.now();
+        while (!currentDate.isAfter(tache.getDeadline())) {
+            for (Jour jour : jours) {
+                if (jour.getDate().equals(currentDate)) {
+                    tache.planifier_auto(jour);
+                    System.out.println("psssk");
+                    break;
+                }
+            }
+            currentDate = currentDate.plusDays(1);
+        }
     }
 
     public Jour[] getJours() {

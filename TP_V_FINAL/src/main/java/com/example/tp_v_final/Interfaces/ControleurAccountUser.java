@@ -39,7 +39,7 @@ public class ControleurAccountUser {
             // Authentification réussie
             accountUser.getUser(pseudo.getText()).setCalendar(new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6)));
             System.out.println(accountUser.getUser(pseudo.getText()));
-            System.out.println(accountUser.getUser(pseudo.getText()).getCalendar().getDebut());
+            System.out.println(accountUser.getUser(pseudo.getText()).getCalendar().getJours()[0].getCreneaux());
             passerAPageSuivante(accountUser.getUser(pseudo.getText()));
 
         } else {

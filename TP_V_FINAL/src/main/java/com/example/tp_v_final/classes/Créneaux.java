@@ -21,7 +21,8 @@ public class Créneaux implements Serializable {
         this.tacheAffectee = null;
         this.dureeMin = dureeMin;
     }
-/****************************************************************************************************/
+
+    /****************************************************************************************************/
     public LinkedList<Créneaux> decomposerCreneaux(Tache tache) {
 
         LinkedList<Créneaux> creneauxDecomp = new LinkedList<>();
@@ -96,6 +97,7 @@ public class Créneaux implements Serializable {
     public void setEstLibre(boolean estLibre) {
         this.estLibre = estLibre;
     }
+
     public int getDureeMin() {
         return dureeMin;
     }
@@ -103,14 +105,15 @@ public class Créneaux implements Serializable {
     public void setDureeMin(int dureeMin) {
         this.dureeMin = dureeMin;
     }
+
     public String toString() {
         String chaine;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         String debutHeureMinute = debut.format(formatter);
         String finHeureMinute = fin.format(formatter);
-      //  chaine= "Début : " + debutHeureMinute + ", Fin : " + finHeureMinute;
-        chaine= debutHeureMinute + " -> " + finHeureMinute;
-        if ( tacheAffectee!=null ) chaine=chaine+" : "+tacheAffectee.getNom();
+        //  chaine= "Début : " + debutHeureMinute + ", Fin : " + finHeureMinute;
+        chaine = debutHeureMinute + " -> " + finHeureMinute;
+        if (tacheAffectee != null) chaine = chaine + " : " + tacheAffectee.getNom();
         return chaine;
     }
 }

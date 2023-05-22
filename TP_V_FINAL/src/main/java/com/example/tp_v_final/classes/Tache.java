@@ -2,12 +2,14 @@ package com.example.tp_v_final.classes;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
 public abstract class Tache implements Serializable {
     protected String nom;
     protected int priorite;
     protected int duree;
     protected LocalDate deadline;
     protected String categorie;
+    private boolean completed;
 
     public Tache(String nom, int priorite, int duree, LocalDate deadline, String categorie) {
         this.nom = nom;
@@ -46,5 +48,13 @@ public abstract class Tache implements Serializable {
 
     public int getPriorite() {
         return priorite;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public boolean isCompleted() {
+        return completed;
     }
 }
