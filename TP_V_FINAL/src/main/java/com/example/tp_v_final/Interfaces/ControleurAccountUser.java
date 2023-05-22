@@ -10,7 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 
 import javafx.scene.control.Alert;
@@ -37,14 +40,21 @@ public class ControleurAccountUser {
 
         if (isAuthenticated) {
             // Authentification réussie
-            accountUser.getUser(pseudo.getText()).setCalendar(new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(6)));
-            System.out.println(accountUser.getUser(pseudo.getText()));
-            System.out.println(accountUser.getUser(pseudo.getText()).getCalendar().getJours()[0].getCreneaux());
             passerAPageSuivante(accountUser.getUser(pseudo.getText()));
 
         } else {
             // Authentification échouée et creation d'un compte
             accountUser.addUser(username,new User());
+            //le mettre dans le fichier 
+            try (FileOutputStream fileOut = new FileOutputStream("users.ser");
+                 ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
+
+                objectOut.writeObject(accountUser);
+
+                System.out.println("le fichier a ete cree");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             afficherMessageErreur("Vous n'etes pas inscrit, mais on vous a cree un nouveau compte");
 
         }
