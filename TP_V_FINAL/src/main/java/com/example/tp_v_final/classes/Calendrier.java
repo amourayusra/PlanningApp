@@ -44,17 +44,23 @@ public class Calendrier implements Serializable {
     }
     public void planifierAuto(Tache tache) {
 
-
+        boolean planifier = false;
         LocalDate currentDate = LocalDate.now();
         while (!currentDate.isAfter(tache.getDeadline())) {
             for (Jour jour : jours) {
                 if (jour.getDate().equals(currentDate)) {
                     tache.planifier_auto(jour);
                     System.out.println("psssk");
+                    planifier = true;
                     break;
                 }
             }
-            currentDate = currentDate.plusDays(1);
+            if(!planifier){
+                currentDate = currentDate.plusDays(1);
+            }else{
+                break;
+            }
+
         }
     }
 
