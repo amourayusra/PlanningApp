@@ -40,11 +40,12 @@ public class ControleurAccountUser {
 
         if (isAuthenticated) {
             // Authentification réussie
+
             passerAPageSuivante(accountUser.getUser(pseudo.getText()));
 
         } else {
             // Authentification échouée et creation d'un compte
-            accountUser.addUser(username,new User());
+            accountUser.addUser(username,new User(2));
             //le mettre dans le fichier 
             try (FileOutputStream fileOut = new FileOutputStream("users.ser");
                  ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {

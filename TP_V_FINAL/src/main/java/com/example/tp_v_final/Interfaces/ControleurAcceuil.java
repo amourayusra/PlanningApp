@@ -214,11 +214,11 @@ public class ControleurAcceuil {
     void PlanifierTache(ActionEvent event) {
         // Récupérer la tâche sélectionnée
         Tache tacheSelectionnee = listeTaches.getSelectionModel().getSelectedItem();
-
         // Vérifier si une tâche est sélectionnée
         if (tacheSelectionnee != null) {
             // Appeler la méthode existante pour planifier la tâche
             user.getCalendar().planifierAuto(tacheSelectionnee);
+            System.out.println(user.getCalendar().getJours()[0].getTaches());
         }
 
     }
@@ -246,7 +246,7 @@ public class ControleurAcceuil {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
             Parent root = loader.load();
             StatsController controleurStats = loader.getController();
-            controleurStats.setUser(user);
+            controleurStats.initialize(user);
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -265,8 +265,6 @@ public class ControleurAcceuil {
     @FXML
     void sauvgarder(ActionEvent event) {
         Account_user account = new Account_user();
-        user.setCalendar(calendarController.getCalendrier());
-        System.out.println("hhhhaaniii"+account.getUser(pseudo).getCalendar().getJours()[1].getDate());
         account.save(user, pseudo);
     }
 }

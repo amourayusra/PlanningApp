@@ -26,21 +26,51 @@ import com.example.tp_v_final.classes.User;
 import com.example.tp_v_final.classes.Tache_simple;
 public class StatsController{
     @FXML
-    Text rendement ;
+    private Text Excellent;
+
     @FXML
-    Text badge ;
+    private Text Good;
+
+
     @FXML
-    Text jour_rentable;
+    private Text Nbmin;
+
+
     @FXML
-    Text encouragement;
+    private Text VerGood;
+
+    @FXML
+    private Text encouragement;
+
+    @FXML
+    private TextField inputNbmin;
+
+    @FXML
+    private Text jour_rentable;
+
+    @FXML
+    private Text rendement;
+
+
     private User user;
 
 
     public void initialize(User user) {
-      //  badge.setText(String.valueOf(user.getNbBadges()));
-      //  jour_rentable.setText(String.valueOf(user.getCalendar().jourRentable()));
+        this.user=user;
+       int[] badges=user.getBadges();
+        Good.setText(String.valueOf(badges[0]));
+        VerGood.setText(String.valueOf(badges[1]));
+        Excellent.setText(String.valueOf(badges[2]));
+        Nbmin.setText(String.valueOf(user.getNbmin()));
+      // jour_rentable.setText(String.valueOf(user.getCalendar().jourRentable()));
         encouragement.setText(String.valueOf(user.getEncouragement()));
-      //  rendement.setText(String.valueOf(user.getNbBadges()));
+        rendement.setText(String.valueOf(user.getNbBadges()));
+
     }
     public void setUser(User user){this.user=user;}
+    @FXML
+    void ModifierNbmin(ActionEvent event) {
+           user.setNbmin(Integer.parseInt(inputNbmin.getText()));
+           Nbmin.setText(String.valueOf(user.getNbmin()));
+    }
 }

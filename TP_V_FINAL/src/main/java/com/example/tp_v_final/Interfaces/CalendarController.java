@@ -70,7 +70,6 @@ public class CalendarController {
     /*-------------------------------------------------------------------------------------------------------------------*/
 
     public void initialize(Calendrier calendar) {
-        System.out.println("hhhhaaniii"+calendar.getJours()[1].getDate());
         ObservableList<Integer> hoursList = FXCollections.observableArrayList();
         for (int i = 1; i <= 12; i++) {
             hoursList.add(i);
@@ -116,7 +115,7 @@ public class CalendarController {
         year.setText(String.valueOf(currentDate.getYear()));
         month.setText(currentDate.getMonth().toString());
         LocalDate DayOfMonth = currentDate.withDayOfMonth(1);
-        Jour[] j = calendrier.getJours();
+        Jour[] j = new Jour[31];
         DayOfWeek firstDayOfWeek = DayOfMonth.getDayOfWeek();
         for (int k = 1; k < firstDayOfWeek.getValue() + 1; k++) {
             Label emptyLabel = new Label(" ");

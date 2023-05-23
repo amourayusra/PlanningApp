@@ -151,21 +151,21 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-            <Tab text="Ajouter Projet">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField layoutX="375.0" layoutY="77.0" text="Nom Projet" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
+                <Tab text="Ajouter Projet">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField layoutX="375.0" layoutY="77.0" text="Nom Projet" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
             </tabs>
         </TabPane>
-      <ButtonBar layoutY="465.0" prefHeight="26.0" prefWidth="900.0">
-        <buttons>
-          <Button fx:id="save" mnemonicParsing="false" onAction="#sauvgarder" prefHeight="26.0" prefWidth="129.0" text="save" />
-        </buttons>
-      </ButtonBar>
+        <ButtonBar layoutY="465.0" prefHeight="26.0" prefWidth="900.0">
+            <buttons>
+                <Button fx:id="save" mnemonicParsing="false" onAction="#sauvgarder" prefHeight="26.0" prefWidth="129.0" text="save" />
+            </buttons>
+        </ButtonBar>
     </children>
 </AnchorPane>

@@ -106,6 +106,8 @@ public class Calendrier implements Serializable {
     }
 
     public void initJours() {
+        LocalDate periode_debut = LocalDate.of(LocalDate.now().getYear(), 1, 1);
+        LocalDate periode_fin = LocalDate.of(LocalDate.now().getYear(), 12, 31);
         long daysBetween = ChronoUnit.DAYS.between(periode_debut, periode_fin);
         jours = new Jour[(int) daysBetween + 1];
         LocalDate currentDate = periode_debut;
@@ -113,10 +115,10 @@ public class Calendrier implements Serializable {
             jours[i] = new Jour(currentDate);
             currentDate = currentDate.plusDays(1);
         }
-        /*
+
         for (int i = 0; i < jours.length; i++) {
             System.out.println(jours[i].getDate()+"\n");
-        }*/
+        }
     }
 
     public void addLibresAll(LocalTime debut, LocalTime fin, int min){

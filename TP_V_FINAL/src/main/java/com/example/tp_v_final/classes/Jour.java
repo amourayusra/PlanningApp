@@ -7,9 +7,9 @@ import java.time.*;
 public class Jour implements Serializable {
     private LocalDate date;
     private LinkedList<Créneaux> creneaux;
-    private int nbmin;
-    private int progress = 5;
-    private int prevu = 2;
+
+    public static int progress = 5;
+    public static int prevu = 2;
 
     public Jour(LocalDate date) {
         this.date = date;
@@ -101,10 +101,8 @@ public class Jour implements Serializable {
 
         List<Tache> liste =  new ArrayList<>();
         for (Créneaux creneau : this.creneaux) {
-            System.out.println("ani hna\n");
-            System.out.println("\npsps " + creneau.getTacheAffectee().getNom());
+            if (creneau.getTacheAffectee()!=null)
             liste.add(creneau.getTacheAffectee());
-
         }
         return liste;
     }
