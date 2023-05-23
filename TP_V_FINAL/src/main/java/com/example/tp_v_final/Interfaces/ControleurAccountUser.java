@@ -48,12 +48,12 @@ public class ControleurAccountUser {
 
         } else {
             // Authentification échouée et creation d'un compte
-            accountUser.addUser(username,new User(2));
+            accountUser.addUser(username,new User(0));
             //le mettre dans le fichier 
             try (FileOutputStream fileOut = new FileOutputStream("users.ser");
                  ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
 
-                objectOut.writeObject(accountUser);
+                objectOut.writeObject(accountUser.getUserMap());
 
                 System.out.println("le fichier a ete cree");
             } catch (IOException e) {

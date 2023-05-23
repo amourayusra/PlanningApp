@@ -18,7 +18,7 @@ public class User implements Serializable {
     private Calendrier calendrier;
     private Historique historique;
     private List<Tache> taches_non_panifiées;
-    private Projet[] projet;
+    private List<Projet> projet;
     private int nb_encouragement;
     public  int nbmin;
     public  int consecutive;
@@ -33,6 +33,7 @@ public class User implements Serializable {
         nbmin = 2;
         consecutive = 0;
         nbBadges = 0;
+        projet = new ArrayList<>();
     }
 
     public float calculRendement() {
@@ -74,9 +75,6 @@ public class User implements Serializable {
     public void annuler() {
     }
 
-    public void ajouterProjet() {
-    }
-
 
     /**************** l'utilisateur peut ajouter une instance de tache decomposable****************************/
     public void ajouterTacheDecomposable(String nom, int priorite, int duree, LocalDate deadline, String categorie) {
@@ -108,5 +106,12 @@ public class User implements Serializable {
     }
     public int getNbmin(){ return nbmin;}
     public int[] getBadges(){ return nb_badges;}
+    public List<Projet> getProjet() {
+        return projet;
+    }
+
+    public void addProjet(Projet nvprojet) {
+        projet.add(nvprojet);
+    }
 
 }

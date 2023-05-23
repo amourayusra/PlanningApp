@@ -11,12 +11,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-
+import javafx.scene.control.TextArea;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ControleurAcceuil {
+
+    @FXML
+    private TableView<Projet> listeTaches1;
+
+    @FXML
+    private TextArea Discription;
 
     @FXML
     private ComboBox<Créneaux> CreneauLJ;
@@ -118,6 +124,10 @@ public class ControleurAcceuil {
 
     @FXML
     private TableColumn<Tache, String> ColmT;
+    @FXML
+    private TableColumn<Tache, String> ColmT1;
+    @FXML
+    private TableColumn<Tache, String> ColmT11;
 
     private CalendarController calendarController;
 
@@ -170,13 +180,16 @@ public class ControleurAcceuil {
                 ColmDu.setCellValueFactory(new PropertyValueFactory<>("duree"));
                 ColmC.setCellValueFactory(new PropertyValueFactory<>("categorie"));
                 ColmD.setCellValueFactory(new PropertyValueFactory<>("deadline"));
-                ColmT.setCellValueFactory(new PropertyValueFactory<>("deadline"));
+                ColmT.setCellValueFactory(new PropertyValueFactory<>("nomP"));
+                ColmT1.setCellValueFactory(new PropertyValueFactory<>("discription"));
+                ColmT11.setCellValueFactory(new PropertyValueFactory<>("listeDeTaches"));
                 // Configurez d'autres colonnes avec les attributs correspondants de la tâche
                 // Récupérez toutes les tâches non planifiées de l'utilisateur
                 List<Tache> tachesNonPlanifiees = user.getTaches_non_panifiées();
-
+                List<Projet> projetCree = user.getProjet();
                 // Ajoutez les tâches à la TableView
                 listeTaches.setItems(FXCollections.observableArrayList(tachesNonPlanifiees));
+                listeTaches1.setItems(FXCollections.observableArrayList(projetCree));
 
                 // Définissez la sélection multiple dans la TableView
                 listeTaches.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -317,8 +330,9 @@ public class ControleurAcceuil {
     @FXML
     void AjouterPrj(ActionEvent event) {
         Tache tacheSelectionnee = listeT.getSelectionModel().getSelectedItem();
-        Projet nvPrj = new Projet();
+        Projet nvPrj = new Projet(nom_tache.getText(), Discription.getText());
         nvPrj.addTache(tacheSelectionnee);
+        user.addProjet(nvPrj);
     }
 
     @FXML

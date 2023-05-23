@@ -44,7 +44,9 @@ public class Account_user implements Serializable {
             e.printStackTrace();
         }
     }
-
+    public HashMap<String, User> getUserMap() {
+        return userMap;
+    }
 
 }
 

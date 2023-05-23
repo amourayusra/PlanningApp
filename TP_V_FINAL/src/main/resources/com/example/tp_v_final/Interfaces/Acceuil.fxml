@@ -21,6 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 
 <AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_v_final.Interfaces.ControleurAcceuil">
     <children>
@@ -128,13 +129,18 @@
                                         <TableColumn fx:id="ColmDu" prefWidth="46.39996337890625" text="Duree" />
                                         <TableColumn fx:id="ColmD" prefWidth="84.800048828125" text="Deadline" />
                                         <TableColumn fx:id="ColmP" prefWidth="50.39996337890625" text="Priorite" />
-                                        <TableColumn fx:id="ColmT" prefWidth="101.60003662109375" text="Type" />
                                     </columns>
                                 </TableView>
                                 <Button fx:id="PlanifierM" layoutX="563.0" layoutY="372.0" mnemonicParsing="false" onAction="#PlanifierManuelle" text="Planifier Manuelle" />
-                                <DatePicker />
                                 <DatePicker fx:id="DatePTM" layoutX="719.0" layoutY="359.0" prefHeight="26.0" prefWidth="151.0" />
                                 <ComboBox fx:id="CreneauLJ" layoutX="720.0" layoutY="398.0" prefWidth="150.0" />
+                                <TableView fx:id="listeTaches1" layoutX="450.0" layoutY="16.0" prefHeight="326.0" prefWidth="427.0">
+                                    <columns>
+                                        <TableColumn fx:id="ColmT" prefWidth="112.79998588562012" text="Nom projet" />
+                                        <TableColumn fx:id="ColmT1" prefWidth="82.39997100830078" text="Dscription" />
+                                        <TableColumn fx:id="ColmT11" prefWidth="231.2" text="liste des taches " />
+                                    </columns>
+                                </TableView>
                             </children>
                         </AnchorPane>
                     </content>
@@ -162,16 +168,18 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TextField fx:id="NomP" layoutX="375.0" layoutY="87.0" prefHeight="38.0" prefWidth="208.0" text="Nom Projet" />
+                                <TextField fx:id="NomP" layoutX="375.0" layoutY="87.0" prefHeight="38.0" prefWidth="293.0" text="Nom Projet" />
                                 <Text fill="#f41d1d" layoutX="311.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un nouveau Projet" textAlignment="CENTER">
                                     <font>
                                         <Font size="24.0" />
                                     </font>
                                 </Text>
                                 <Text layoutX="200.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Donner un nom a votre projet" />
-                                <Text layoutX="200.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="voici la liste des  tache cree" />
-                                <ListView fx:id="listeT" layoutX="376.0" layoutY="143.0" prefHeight="200.0" prefWidth="200.0" />
-                                <Button fx:id="AjoutP" layoutX="416.0" layoutY="370.0" mnemonicParsing="false" onAction="#AjouterPrj" text="Ajouter" />
+                                <Text layoutX="207.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="voici la liste des  tache cree" />
+                                <ListView fx:id="listeT" layoutX="379.0" layoutY="220.0" prefHeight="142.0" prefWidth="292.0" />
+                                <Button fx:id="AjoutP" layoutX="414.0" layoutY="383.0" mnemonicParsing="false" onAction="#AjouterPrj" text="Ajouter" />
+                                <TextArea fx:id="Discription" layoutX="378.0" layoutY="132.0" prefHeight="82.0" prefWidth="290.0" />
+                                <Text layoutX="196.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discription du projet" />
                             </children>
                         </AnchorPane>
                     </content>
