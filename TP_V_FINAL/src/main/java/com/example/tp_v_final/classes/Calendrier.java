@@ -1,5 +1,7 @@
 package com.example.tp_v_final.classes;
+
 import com.example.tp_v_final.classes.*;
+
 import java.time.temporal.ChronoUnit;
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -42,24 +44,24 @@ public class Calendrier implements Serializable {
         }
         return result;
     }
+
     public void planifierAuto(Tache tache) {
 
-        boolean planifier = false;
+        boolean estplanifier = false;
         LocalDate currentDate = LocalDate.now();
         while (!currentDate.isAfter(tache.getDeadline())) {
             for (Jour jour : jours) {
                 if (jour.getDate().equals(currentDate)) {
-                    tache.planifier_auto(jour);
-                    System.out.println("psssk");
-                    planifier = true;
+                    estplanifier = tache.planifier_auto(jour);
+                    System.out.println(estplanifier);
                     break;
                 }
             }
-            if(!planifier){
-                currentDate = currentDate.plusDays(1);
-            }else{
+            if (estplanifier) {
+                System.out.println("pssskjjj");
                 break;
             }
+            currentDate = currentDate.plusDays(1);
 
         }
     }
@@ -98,11 +100,13 @@ public class Calendrier implements Serializable {
     public LocalDate getDebut() {
         return periode_debut;
     }
+
     public LocalDate getFin() {
         return periode_fin;
     }
+
     public Jour getDayOfMonth(LocalDate DayOfMonth) {
-        Jour selectedDay=null;
+        Jour selectedDay = null;
         for (Jour jour : jours) {
             if (jour.getDate().equals(DayOfMonth)) {
                 selectedDay = jour;
@@ -124,13 +128,13 @@ public class Calendrier implements Serializable {
         }
 
         for (int i = 0; i < jours.length; i++) {
-            System.out.println(jours[i].getDate()+"\n");
+            System.out.println(jours[i].getDate() + "\n");
         }
     }
 
-    public void addLibresAll(LocalTime debut, LocalTime fin, int min){
+    public void addLibresAll(LocalTime debut, LocalTime fin, int min) {
         for (int i = 0; i < jours.length; i++) {
-                Créneaux cr=new Créneaux(debut,fin,min);
+            Créneaux cr = new Créneaux(debut, fin, min);
             jours[i].ajouterCreneau(cr);
         }
     }

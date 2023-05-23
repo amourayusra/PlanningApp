@@ -35,6 +35,8 @@ public class Créneaux implements Serializable {
 
         if (creneauDuree == tache.getDuree()) {
             creneauxDecomp.add(this);
+            this.estLibre = false;
+            this.tacheAffectee = tache;
             return creneauxDecomp;
         } else if (creneauDuree > tache.getDuree()) {
             LocalTime debutCreneau1 = debut;

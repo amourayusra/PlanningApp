@@ -14,16 +14,20 @@ public class Tache_simple extends Tache implements Serializable {
         this.periode = periode;
     }
 
-    public void planifier_auto(Jour jour) {
+    public boolean planifier_auto(Jour jour) {
         List<Créneaux> creneauxLibres =   jour.ChercheCreneauLibre();
-        if (creneauxLibres.isEmpty()) {
+        System.out.println(jour.ChercheCreneauLibre());
+    if (creneauxLibres.isEmpty()) {
             //exeption unsheudeled
             System.out.println("Impossible de planifier la tâche " + this.nom + ". Aucun créneau libre n'a été trouvé.");
+            return false;
         } else {
+            boolean tacheplanifier = false;
             //cherchons un creneaux qui corespond
             for (Créneaux creneau : creneauxLibres) {
                 //conditions de planification d'une tache
                 if ((creneau.calculerDuree() >= this.duree ) && (this.duree >= creneau.getDureeMin())) {
+                    System.out.println("dkhel");
                     //si le creneau satisfait les condition on le decompose
                     LinkedList<Créneaux> creneauxDecomp = creneau.decomposerCreneaux(this);
                     // Décomposition du créneau du jour en deux
@@ -36,17 +40,23 @@ public class Tache_simple extends Tache implements Serializable {
                     }
 
                     System.out.println("Tâche planifiée avec succès pour la date " + jour.getDate().toString());
+                    tacheplanifier = true;
                     break;
-                }
+                }else tacheplanifier = false;
+
             }
+            return tacheplanifier;
         }
     }
 
-    public void planifier_manuel(Créneaux creneau){
+    public boolean planifier_manuel(Créneaux creneau){
         if((creneau.calculerDuree() >= this.getDuree())&&(this.duree > creneau.getDureeMin())){
             creneau.decomposerCreneaux(this);
+            return true;
+
         }else {
             //exception cette tache ne pas etre planifier dans ce creneau
+            return false;
         }
     }
 

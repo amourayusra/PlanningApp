@@ -42,9 +42,9 @@ public abstract class Tache implements Serializable {
     public void effectuer() {
     }
 
-    public abstract void planifier_auto(Jour jour);
+    public abstract boolean planifier_auto(Jour jour);
 
-    public abstract void planifier_manuel(Créneaux creneau);
+    public abstract boolean planifier_manuel(Créneaux creneau);
 
     public int getPriorite() {
         return priorite;

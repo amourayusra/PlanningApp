@@ -1,5 +1,7 @@
 package com.example.tp_v_final.classes;
 
+import javafx.scene.control.Alert;
+
 import java.io.Serializable;
 import java.util.*;
 import java.time.*;
@@ -40,12 +42,20 @@ public class Jour implements Serializable {
                     iter.previous();
                     iter.add(nouveauCreneau);
                     return;
-                } else if (nouveauCreneau.getDebut().isAfter(creneauCourant.getFin())) {
-                    // nouveau créneau après créneau courant
-                    continue;
-                } else {
+                } else try {
+                   if (nouveauCreneau.getDebut().isAfter(creneauCourant.getFin())){
+                       // nouveau créneau après créneau courant
+                       continue;
+                      // throw new IllegalArgumentException("Le créneau à ajouter chevauche un créneau existant.");
+                   }
+                } catch (IllegalArgumentException e){
                     // chevauchement entre les créneaux
-                    throw new IllegalArgumentException("Le créneau à ajouter chevauche un créneau existant.");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setHeaderText(null);
+                    alert.setContentText("");
+                    alert.showAndWait();
+
                 }
             }
             // nouveau créneau après tous les créneaux existants
