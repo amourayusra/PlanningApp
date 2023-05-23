@@ -18,24 +18,21 @@ public class User implements Serializable {
     private Calendrier calendrier;
     private Historique historique;
     private List<Tache> taches_non_panifiées;
-    private List<Badge> badges;
     private Projet[] projet;
     private int nb_encouragement;
-    public static int nbmin;
-    public static int consecutive;
-    public static int nbBadges;
-    public static int nb_badges[] ;
+    public  int nbmin;
+    public  int consecutive;
+    public int nbBadges;
+    public  int[] nb_badges = new int[]{0, 0, 0};
 
     public User(int nb_encouragement) {
-        this.nb_encouragement = nb_encouragement;// bach ntesti stats
+        this.nb_encouragement = 0;
         taches_non_panifiées = new ArrayList<>();
-        badges = new ArrayList<>();
-        calendrier=new Calendrier(LocalDate.now().minusMonths(2),LocalDate.now().plusMonths(2));
+        calendrier = new Calendrier(LocalDate.now().minusMonths(2), LocalDate.now().plusMonths(2));
         calendrier.initJours();
-        nbmin=2;
-        consecutive=0;
-        nbBadges=0;
-        nb_badges = new int[]{0, 0, 0};
+        nbmin = 2;
+        consecutive = 0;
+        nbBadges = 0;
     }
 
     public float calculRendement() {
@@ -105,10 +102,11 @@ public class User implements Serializable {
     public void setCalendar(Calendrier calendar) {
         this.calendrier = calendar;
     }
-    public int[] getBadges(){ return nb_badges;}
+
     public void setNbmin (int nbmin){
         this.nbmin=nbmin;
     }
     public int getNbmin(){ return nbmin;}
+    public int[] getBadges(){ return nb_badges;}
 
 }

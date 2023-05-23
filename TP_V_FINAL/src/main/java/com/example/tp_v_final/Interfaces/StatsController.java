@@ -24,6 +24,8 @@ import com.example.tp_v_final.classes.Jour;
 import com.example.tp_v_final.classes.Tache;
 import com.example.tp_v_final.classes.User;
 import com.example.tp_v_final.classes.Tache_simple;
+
+
 public class StatsController{
     @FXML
     private Text Excellent;
@@ -57,11 +59,10 @@ public class StatsController{
 
     public void initialize(User user) {
         this.user=user;
-       int[] badges=user.getBadges();
-        Good.setText(String.valueOf(badges[0]));
-        VerGood.setText(String.valueOf(badges[1]));
-        Excellent.setText(String.valueOf(badges[2]));
-        Nbmin.setText(String.valueOf(user.getNbmin()));
+        Good.setText(String.valueOf(user.nb_badges[0]));
+        VerGood.setText(String.valueOf(user.nb_badges[1]));
+        Excellent.setText(String.valueOf(user.nb_badges[2]));
+        Nbmin.setText(String.valueOf(user.nbmin));
       // jour_rentable.setText(String.valueOf(user.getCalendar().jourRentable()));
         encouragement.setText(String.valueOf(user.getEncouragement()));
         rendement.setText(String.valueOf(user.getNbBadges()));

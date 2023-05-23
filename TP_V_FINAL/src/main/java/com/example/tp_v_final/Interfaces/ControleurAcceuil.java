@@ -275,9 +275,8 @@ public class ControleurAcceuil {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Calendar.fxml"));
             Parent root = loader.load();
-            System.out.println("hhhhaaniii"+ user.getCalendar().getJours()[1].getDate());
             calendarController = loader.getController();
-            calendarController.initialize(user.getCalendar());
+            calendarController.initialize(user.getCalendar(),user);
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -292,6 +291,7 @@ public class ControleurAcceuil {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Stats.fxml"));
             Parent root = loader.load();
+           // System.out.println("piw"+ user.getBadges()[0]);
             StatsController controleurStats = loader.getController();
             controleurStats.initialize(user);
             Stage stage = new Stage();

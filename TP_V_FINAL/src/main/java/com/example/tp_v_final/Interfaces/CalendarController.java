@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+
 public class CalendarController {
     @FXML
     private ComboBox<String> ampmDebut;
@@ -63,13 +64,14 @@ public class CalendarController {
 
     @FXML
     private Text year;
-
+    private User user;
     private Calendrier calendrier;
     private ControleurAcceuil controleur;
 
     /*-------------------------------------------------------------------------------------------------------------------*/
 
-    public void initialize(Calendrier calendar) {
+    public void initialize(Calendrier calendar,User user) {
+        this.user=user;
         ObservableList<Integer> hoursList = FXCollections.observableArrayList();
         for (int i = 1; i <= 12; i++) {
             hoursList.add(i);
@@ -133,11 +135,10 @@ public class CalendarController {
             calendar.getChildren().add(button);
             button.setOnAction(event -> {
                 try {
-                    System.out.println("1  " + j[index].getDate());
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("Tache.fxml"));
                     Parent root = loader.load();
                     TacheController controleurTache = loader.getController();
-                    controleurTache.initialize(j[index]);
+                    controleurTache.initialize(j[index],user);
                     controleurTache.setMainController(this);
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);

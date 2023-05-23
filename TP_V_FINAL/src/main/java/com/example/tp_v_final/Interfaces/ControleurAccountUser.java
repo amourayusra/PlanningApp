@@ -18,6 +18,8 @@ import java.time.LocalDate;
 
 import javafx.scene.control.Alert;
 
+
+
 public class ControleurAccountUser {
 
     @FXML
@@ -25,6 +27,7 @@ public class ControleurAccountUser {
 
     @FXML
     private TextField pseudo;
+
 
     @FXML
     void Authentification(ActionEvent event) {
@@ -40,7 +43,7 @@ public class ControleurAccountUser {
 
         if (isAuthenticated) {
             // Authentification réussie
-
+            System.out.println("\n RANI HNAAA"+accountUser.getUser(pseudo.getText()).nb_badges[1]+"\n");
             passerAPageSuivante(accountUser.getUser(pseudo.getText()));
 
         } else {
@@ -97,6 +100,5 @@ public class ControleurAccountUser {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 
 }

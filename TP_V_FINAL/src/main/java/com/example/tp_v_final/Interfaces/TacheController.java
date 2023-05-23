@@ -50,11 +50,11 @@ public class TacheController {
 
     @FXML
     private ListView<String> taskListView;
-
+    private User user;
     private Jour jour;
     private CalendarController controleur;
 
-    public void initialize(Jour jour) {
+    public void initialize(Jour jour,User user) {
         ObservableList<Integer> hoursList = FXCollections.observableArrayList();
         for (int i = 1; i <= 12; i++) {
             hoursList.add(i);
@@ -76,12 +76,12 @@ public class TacheController {
         ampm.add("pm");
         ampmDebut.setItems(ampm);
         ampmFin.setItems(ampm);
-
+this.user=user;
         setUser(jour);
         Stats.setText(jour.toStats());
         date.setText(jour.getDate().toString());
         System.out.println(jour.getDate().toString());
-
+/*
         Tache Tache1=new Tache_simple("asma",2,12,LocalDate.now(),"",false,2);
         Tache Tache2=new Tache_simple("amina",2,12,LocalDate.now(),"",false,3);
         Tache Tache3=new Tache_simple("yusra",2,12,LocalDate.now(),"",false,3);
@@ -96,7 +96,7 @@ public class TacheController {
         crn.add(creneau2);
         crn.add(creneau3);
         jour.setCreneaux(crn);
-        System.out.println("heu  "+jour.getTaches());
+        System.out.println("heu  "+jour.getTaches());*/
         List<Tache> tasks = jour.getTaches();
         taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -164,29 +164,29 @@ public class TacheController {
             if (selectedTask != null) {
                 boolean completed = selectedTask.isCompleted();
                 selectedTask.setCompleted(!completed);
-                if (progress >= nbmin) {
+                if (progress >= user.nbmin) {
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Félicitations!");
                     alert.setHeaderText(null);
                     alert.setContentText("Tu as atteint le nombre maximal de taches à faire ce jour.");
                     alert.showAndWait();
-                    consecutive++;
+                    user.consecutive++;
                     // Check if a badge is achieved
                     for (int i = 0; i < badgeThresholds.length; i++) {
-                        if (consecutive == badgeThresholds[i]) {
+                        if (user.consecutive == badgeThresholds[i]) {
                             Alert badgeAlert = new Alert(AlertType.INFORMATION);
                             badgeAlert.setTitle("Badge atteint");
                             badgeAlert.setHeaderText(null);
                             badgeAlert.setContentText("Badge achieved: " + badgeNames[i]);
                             badgeAlert.showAndWait();
-                            nb_badges[i]++;
-                            nbBadges++;
+                            user.nb_badges[i]++;
+                           user.nbBadges++;
                             break;
                         }
                     }
                 } else {
                     // Reset the consecutive achievements
-                    consecutive = 0;
+                    user.consecutive = 0;
                 }
             }
             }
