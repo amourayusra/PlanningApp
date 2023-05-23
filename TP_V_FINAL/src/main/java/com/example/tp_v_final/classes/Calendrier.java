@@ -44,6 +44,7 @@ public class Calendrier implements Serializable {
     }
     public void planifierAuto(Tache tache) {
 
+
         LocalDate currentDate = LocalDate.now();
         while (!currentDate.isAfter(tache.getDeadline())) {
             for (Jour jour : jours) {

@@ -21,7 +21,7 @@ public class Tache_decomposable extends Tache implements Serializable {
         boolean tachePlanifiee = false;
 
         for (Créneaux creneau : creneauxLibres) {
-            if (creneau.calculerDuree() >= duree && creneau.getDureeMin() <= duree) {
+            if ((creneau.calculerDuree() >= duree) && (creneau.getDureeMin() <= duree)) {
                 creneau.setTacheAffectee(this);
                 tachePlanifiee = true;
                 break;

@@ -19,6 +19,27 @@ import java.util.List;
 public class ControleurAcceuil {
 
     @FXML
+    private ComboBox<Créneaux> CreneauLJ;
+
+    @FXML
+    private DatePicker DatePTM;
+
+    @FXML
+    private Button PlanifierM;
+
+    @FXML
+    private TextField NomP;
+
+    @FXML
+    private ListView<Tache> listeT;
+
+    @FXML
+    private Button AjoutP;
+
+    @FXML
+    private Tab AjoutProjet;
+
+    @FXML
     private ColorPicker Color;
 
     @FXML
@@ -193,6 +214,32 @@ public class ControleurAcceuil {
                     e.printStackTrace();}}
 
         });*/
+        AjoutProjet.setOnSelectionChanged(event -> {
+            if (AjoutProjet.isSelected()) {
+                // Configurez la sélection multiple dans la ListView
+                listeT.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+                // Récupérez les tâches non planifiées de l'utilisateur
+                List<Tache> tachesNonPlanifiees = user.getTaches_non_panifiées();
+
+                // Définissez une cell factory pour la ListView pour afficher uniquement les noms des tâches
+                listeT.setCellFactory(taskListView -> new ListCell<Tache>() {
+                    @Override
+                    protected void updateItem(Tache tache, boolean empty) {
+                        super.updateItem(tache, empty);
+
+                        if (empty || tache == null) {
+                            setText(null);
+                        } else {
+                            setText(tache.getNom());
+                        }
+                    }
+                });
+
+                // Définissez les éléments de la ListView en utilisant la liste des tâches non planifiées
+                listeT.setItems(FXCollections.observableArrayList(tachesNonPlanifiees));
+            }
+        });
     }
 
     @FXML
@@ -266,5 +313,19 @@ public class ControleurAcceuil {
     void sauvgarder(ActionEvent event) {
         Account_user account = new Account_user();
         account.save(user, pseudo);
+    }
+    @FXML
+    void AjouterPrj(ActionEvent event) {
+        Tache tacheSelectionnee = listeT.getSelectionModel().getSelectedItem();
+        Projet nvPrj = new Projet();
+        nvPrj.addTache(tacheSelectionnee);
+    }
+
+    @FXML
+    void PlanifierManuelle(ActionEvent event) {
+        Créneaux creneauSelectionne = CreneauLJ.getValue();
+        Tache tacheSelectionnee = listeTaches.getSelectionModel().getSelectedItem();
+        // Utilisez le créneau sélectionné pour planifier la tâche
+        tacheSelectionnee.planifier_manuel(creneauSelectionne);
     }
 }

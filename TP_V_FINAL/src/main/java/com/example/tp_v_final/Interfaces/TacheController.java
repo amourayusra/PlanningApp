@@ -81,7 +81,7 @@ public class TacheController {
         Stats.setText(jour.toStats());
         date.setText(jour.getDate().toString());
         System.out.println(jour.getDate().toString());
-/*
+
         Tache Tache1=new Tache_simple("asma",2,12,LocalDate.now(),"",false,2);
         Tache Tache2=new Tache_simple("amina",2,12,LocalDate.now(),"",false,3);
         Tache Tache3=new Tache_simple("yusra",2,12,LocalDate.now(),"",false,3);
@@ -96,7 +96,7 @@ public class TacheController {
         crn.add(creneau2);
         crn.add(creneau3);
         jour.setCreneaux(crn);
-        System.out.println("heu  "+jour.getTaches());*/
+        System.out.println("heu  "+jour.getTaches());
         List<Tache> tasks = jour.getTaches();
         taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
