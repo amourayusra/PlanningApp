@@ -31,36 +31,24 @@ public class Jour implements Serializable {
 
     /***************************************************************************************/
     public void ajouterCreneau(Créneaux nouveauCreneau) {
-        if (this.creneaux.isEmpty()) {
-            this.creneaux.add(nouveauCreneau);
-        } else {
-            ListIterator<Créneaux> iter = this.creneaux.listIterator();
-            while (iter.hasNext()) {
-                Créneaux creneauCourant = iter.next();
-                if (nouveauCreneau.getFin().isBefore(creneauCourant.getDebut())) {
-                    // nouveau créneau avant créneau courant
-                    iter.previous();
-                    iter.add(nouveauCreneau);
-                    return;
-                } else try {
-                   if (nouveauCreneau.getDebut().isAfter(creneauCourant.getFin())){
-                       // nouveau créneau après créneau courant
-                       continue;
-                      // throw new IllegalArgumentException("Le créneau à ajouter chevauche un créneau existant.");
-                   }
-                } catch (IllegalArgumentException e){
-                    // chevauchement entre les créneaux
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText(null);
-                    alert.setContentText("");
-                    alert.showAndWait();
+        LinkedList<Créneaux> sortedCreneaux = new LinkedList<>();
 
-                }
+        boolean isInserted = false;
+        for (Créneaux creneau : this.creneaux) {
+            if (nouveauCreneau.getFin().isBefore(creneau.getDebut())) {
+                // nouveau creneau before current creneau
+                sortedCreneaux.add(nouveauCreneau);
+                isInserted = true;
             }
-            // nouveau créneau après tous les créneaux existants
-            this.creneaux.add(nouveauCreneau);
+            sortedCreneaux.add(creneau);
         }
+
+        if (!isInserted) {
+            // nouveau creneau after all existing creneaux
+            sortedCreneaux.add(nouveauCreneau);
+        }
+
+        this.creneaux = sortedCreneaux;
     }
 
     /***************************************************************************************/
@@ -89,7 +77,7 @@ public class Jour implements Serializable {
     }
 
     public String toStats() {
-        return "- Son rendement journalier de ce jour : " + String.valueOf(progress / prevu);
+        return "";
     }
 
     /***************************************************************************************/
@@ -112,13 +100,10 @@ public class Jour implements Serializable {
         List<Tache> liste =  new ArrayList<>();
         for (Créneaux creneau : this.creneaux) {
             if (creneau.getTacheAffectee()!=null)
-            liste.add(creneau.getTacheAffectee());
+                liste.add(creneau.getTacheAffectee());
         }
         return liste;
     }
 }
-
-
-
 
 

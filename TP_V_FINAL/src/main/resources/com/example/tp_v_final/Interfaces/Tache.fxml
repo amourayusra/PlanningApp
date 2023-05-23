@@ -50,5 +50,11 @@
       <Line endX="-99.99996948242188" endY="395.0" layoutX="569.0" layoutY="5.0" startX="-100.0" startY="69.66667175292969" />
       <ListView fx:id="taskListView" layoutX="15.0" layoutY="110.0" prefHeight="270.0" prefWidth="200.0" />
       <Text layoutX="242.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de taches complétées :" />
+      <Label layoutX="293.0" layoutY="164.0" text="Créneaux libres :">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Label>
+      <ListView fx:id="taskListView1" layoutX="249.0" layoutY="185.0" prefHeight="193.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

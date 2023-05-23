@@ -50,10 +50,12 @@ public class TacheController {
 
     @FXML
     private ListView<String> taskListView;
+    @FXML
+    private ListView<String> taskListView1;
     private User user;
     private Jour jour;
     private CalendarController controleur;
-
+@FXML
     public void initialize(Jour jour,User user) {
         ObservableList<Integer> hoursList = FXCollections.observableArrayList();
         for (int i = 1; i <= 12; i++) {
@@ -76,12 +78,12 @@ public class TacheController {
         ampm.add("pm");
         ampmDebut.setItems(ampm);
         ampmFin.setItems(ampm);
-this.user=user;
+        this.user=user;
         setUser(jour);
-        Stats.setText(jour.toStats());
+        Stats.setText(String.valueOf(user.getComp()));
         date.setText(jour.getDate().toString());
         System.out.println(jour.getDate().toString());
-
+/*
         Tache Tache1=new Tache_simple("asma",2,12,LocalDate.now(),"",false,2);
         Tache Tache2=new Tache_simple("amina",2,12,LocalDate.now(),"",false,3);
         Tache Tache3=new Tache_simple("yusra",2,12,LocalDate.now(),"",false,3);
@@ -96,7 +98,7 @@ this.user=user;
         crn.add(creneau2);
         crn.add(creneau3);
         jour.setCreneaux(crn);
-        System.out.println("heu  "+jour.getTaches());
+        System.out.println("heu  "+jour.getTaches());*/
         List<Tache> tasks = jour.getTaches();
         taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -113,6 +115,15 @@ this.user=user;
             taskNames.add(task.getNom());
         }
         taskListView.setItems(taskNames);
+
+        List<Créneaux> creneauxList = jour.ChercheCreneauLibre();
+        if (creneauxList!=null){
+        ObservableList<String> creneauxNames = FXCollections.observableArrayList();
+        for (Créneaux creneau : creneauxList) {
+            creneauxNames.add(creneau.toString());
+        }
+        taskListView1.setItems(creneauxNames);}
+
         taskListView.setCellFactory(listView -> new ListCell<String>() {
             private final HBox hbox;
             private final CheckBox checkBox;
