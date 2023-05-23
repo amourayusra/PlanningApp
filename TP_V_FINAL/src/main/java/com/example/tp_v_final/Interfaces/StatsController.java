@@ -65,9 +65,11 @@ public class StatsController{
         Nbmin.setText(String.valueOf(user.nbmin));
       // jour_rentable.setText(String.valueOf(user.getCalendar().jourRentable()));
         encouragement.setText(String.valueOf(user.getEncouragement()));
-        rendement.setText(String.valueOf(user.getNbBadges()));
+     //   rendement.setText(String.valueOf(user.getComp()));
 
     }
+    public void setRendement(int i){ user.setComp(i);
+    rendement.setText(String.valueOf(i));}
     public void setUser(User user){this.user=user;}
     @FXML
     void ModifierNbmin(ActionEvent event) {

@@ -24,7 +24,7 @@
          </font>
       </Label>
       <Line endX="-99.99998474121094" endY="397.2928771972656" layoutX="333.0" layoutY="3.0" startX="-100.0" startY="69.66667175292969" />
-      <Text fx:id="Stats" layoutX="242.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="Stats" layoutX="418.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
       <Label layoutX="54.0" layoutY="83.0" text="Taches affectées :">
          <font>
             <Font name="Arial Black" size="12.0" />
@@ -49,5 +49,6 @@
       <Label layoutX="550.0" layoutY="208.0" text=":" />
       <Line endX="-99.99996948242188" endY="395.0" layoutX="569.0" layoutY="5.0" startX="-100.0" startY="69.66667175292969" />
       <ListView fx:id="taskListView" layoutX="15.0" layoutY="110.0" prefHeight="270.0" prefWidth="200.0" />
+      <Text layoutX="242.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de taches complétées :" />
    </children>
 </AnchorPane>

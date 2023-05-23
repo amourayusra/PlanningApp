@@ -81,7 +81,7 @@ this.user=user;
         Stats.setText(jour.toStats());
         date.setText(jour.getDate().toString());
         System.out.println(jour.getDate().toString());
-/*
+
         Tache Tache1=new Tache_simple("asma",2,12,LocalDate.now(),"",false,2);
         Tache Tache2=new Tache_simple("amina",2,12,LocalDate.now(),"",false,3);
         Tache Tache3=new Tache_simple("yusra",2,12,LocalDate.now(),"",false,3);
@@ -96,7 +96,7 @@ this.user=user;
         crn.add(creneau2);
         crn.add(creneau3);
         jour.setCreneaux(crn);
-        System.out.println("heu  "+jour.getTaches());*/
+        System.out.println("heu  "+jour.getTaches());
         List<Tache> tasks = jour.getTaches();
         taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -124,7 +124,6 @@ this.user=user;
                 checkBox.setOnAction(event -> onTaskCompleted(event));
                 label = new Label();
                 hbox.getChildren().addAll(checkBox,
-
                         label);
             }
 
@@ -138,7 +137,11 @@ this.user=user;
                     label.setText(taskName);
                     Tache task = findTaskByName(taskName);
                     if (task != null) {
+                        // Save the current checkbox value before updating it
+                        boolean checkboxValue = checkBox.isSelected();
                         checkBox.setSelected(task.isCompleted() == true);
+                        // Restore the previous checkbox value
+                        checkBox.setSelected(checkboxValue);
                     } else {
                         checkBox.setSelected(false);
                     }
@@ -157,40 +160,56 @@ this.user=user;
     }
 
     @FXML
-    private void onTaskCompleted(ActionEvent event) {
-        String taskName = taskListView.getSelectionModel().getSelectedItem();
-        if (taskName != null) {
-            Tache selectedTask = findTaskByName(taskName);
-            if (selectedTask != null) {
-                boolean completed = selectedTask.isCompleted();
-                selectedTask.setCompleted(!completed);
-                if (progress >= user.nbmin) {
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Félicitations!");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Tu as atteint le nombre maximal de taches à faire ce jour.");
-                    alert.showAndWait();
-                    user.consecutive++;
-                    // Check if a badge is achieved
-                    for (int i = 0; i < badgeThresholds.length; i++) {
-                        if (user.consecutive == badgeThresholds[i]) {
-                            Alert badgeAlert = new Alert(AlertType.INFORMATION);
-                            badgeAlert.setTitle("Badge atteint");
-                            badgeAlert.setHeaderText(null);
-                            badgeAlert.setContentText("Badge achieved: " + badgeNames[i]);
-                            badgeAlert.showAndWait();
-                            user.nb_badges[i]++;
-                           user.nbBadges++;
-                            break;
+
+        private void onTaskCompleted (ActionEvent event){
+            String taskName = taskListView.getSelectionModel().getSelectedItem();
+            user.setComp(user.getComp()+1);
+        Stats.setText(String.valueOf(user.getComp()));
+
+
+            if (taskName != null) {
+                Tache selectedTask = findTaskByName(taskName);
+                if (selectedTask != null) {
+                    boolean completed = selectedTask.isCompleted();
+                    selectedTask.setCompleted(true);
+
+                    if (progress >= user.nbmin) {
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Félicitations!");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Tu as atteint le nombre maximal de taches à faire ce jour.");
+                        alert.showAndWait();
+
+                        user.consecutive++;
+
+                        // Check if a badge is achieved
+                        int currentBadgeLevel = user.nbBadges;
+                        if (currentBadgeLevel < badgeThresholds.length) {
+                            int requiredThreshold = badgeThresholds[currentBadgeLevel];
+                            if (user.consecutive == requiredThreshold) {
+                                String currentBadgeName = badgeNames[currentBadgeLevel];
+                                Alert badgeAlert = new Alert(AlertType.INFORMATION);
+                                badgeAlert.setTitle("Badge atteint");
+                                badgeAlert.setHeaderText(null);
+                                badgeAlert.setContentText("Badge achieved: " + currentBadgeName);
+                                badgeAlert.showAndWait();
+
+                                user.nb_badges[currentBadgeLevel]++;
+                                user.nbBadges++;
+
+                                // Reset the consecutive achievements
+                                user.consecutive = 0;
+                            }
                         }
+                    } else {
+                        // Reset the consecutive achievements
+                        user.consecutive = 0;
                     }
-                } else {
-                    // Reset the consecutive achievements
-                    user.consecutive = 0;
                 }
             }
-            }
         }
+
+
 
 
 

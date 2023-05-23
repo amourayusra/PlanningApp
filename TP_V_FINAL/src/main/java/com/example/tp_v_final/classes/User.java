@@ -14,7 +14,7 @@ import java.util.List;
 
 public class User implements Serializable {
     public final static String[] badgeNames = {"Good", "VeryGood", "Excellent"};
-    public final static int[] badgeThresholds = {5, 3, 3};
+    public final static int[] badgeThresholds = {3, 3, 3};
     private Calendrier calendrier;
     private Historique historique;
     private List<Tache> taches_non_panifiées;
@@ -24,6 +24,7 @@ public class User implements Serializable {
     public  int consecutive;
     public int nbBadges;
     public  int[] nb_badges = new int[]{0, 0, 0};
+    private int tache_comp;
 
     public User(int nb_encouragement) {
         this.nb_encouragement = 0;
@@ -113,5 +114,6 @@ public class User implements Serializable {
     public void addProjet(Projet nvprojet) {
         projet.add(nvprojet);
     }
-
+public void setComp( int i ){ this.tache_comp=i;}
+    public int getComp(  ){ return tache_comp;}
 }
